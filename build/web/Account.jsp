@@ -4,6 +4,7 @@
     Author     : Duy.Tran
 --%>
 
+<%@page import="controller.Action"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -49,14 +50,19 @@
                                     </c:otherwise>
                                 </c:choose></td>
                             <td>
-                                <button class="update">Update</button>
-                                <button class="deactivate">${account.isUse ? 'Deactivate' : 'Activate'}</button>
-                                <button class="delete">Delete</button>
+                                <form action="MainController" method="post">
+                                    <button class="update" type="submit" name="action" value="<%= Action.HOME %>">Update</button>
+                                <button class="deactivate" type="submit" name="action" value="<%= Action.HOME %>">${account.isUse ? 'Deactivate' : 'Activate'}</button>
+                                <button class="delete" type="submit" name="action" value="<%= Action.HOME %>">Delete</button>
+                                </form>
                             </td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
+            <div class="flex w-full justify-center mt-7 hover:text-blue-500 hover:underline">
+                <a href="MainController?action=<%= Action.REGISTER %>">Add new account</a>
+            </div>
         </div>
     </div>
 </body>

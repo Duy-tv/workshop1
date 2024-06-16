@@ -30,9 +30,7 @@
 
             <button type="submit" class="w-full py-2 px-4 bg-indigo-600 text-white font-bold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50" name="action" value="<%= Action.LOGIN %>">Login</button>
             <p class="my-2 text-red-600">${message}</p>
-            <div class="mt-2">
-                <span>Don't have account?</span> <a class="text-blue-500 hover:underline" href="MainController?action=<%= Action.REGISTER %>">Register</a>
-            </div>
+            
         </form>
     </body>
 </html>

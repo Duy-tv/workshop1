@@ -42,12 +42,12 @@ public class LoginServlet extends HttpServlet {
             if (account != null && password != null) {
                 AccountDAO ad = new AccountDAO();
                 Account acc = ad.getUserLogin(account, password);
-                if (acc != null) {
+                if (acc != null && acc.isIsUse()) {
                     HttpSession session = request.getSession();
                     session.setAttribute("LoginedAcc", acc);
                     url = Action.HOME_URL;
                 } else {
-                    message = "Email does not exist or password is wrong";
+                    message = "Account does not exist or password is wrong";
                     request.setAttribute("message", message);
                     url = Action.LOGIN_URL;
                 }
