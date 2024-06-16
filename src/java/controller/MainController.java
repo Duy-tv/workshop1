@@ -57,6 +57,7 @@ public class MainController extends HttpServlet {
                     break;
                 case Action.REGISTER:
                     url = Action.REGISTER_URL;
+                    break;
                 case Action.LOGOUT:
                     url = "LogoutServlet";
                     break;

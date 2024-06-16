@@ -16,6 +16,6 @@
     </head>
     <body>
         <%@include file="includes/Header.jsp" %>
-            <h1>WORKSHOP 1</h1>
+            <h1>WELCOME TO WORKSHOP 1</h1>
     </body>
 </html>
