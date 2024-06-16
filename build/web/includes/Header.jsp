@@ -27,7 +27,14 @@
                 <div class="text-gray-500 order-3 w-full md:w-auto md:order-2">
                     <ul class="flex font-semibold justify-between">
                         <li class="md:px-4 md:py-2 text-indigo-500"><a href="MainController?action=<%= Action.HOME%>">Home</a></li>
-                        <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="MainController?action=<%= Action.ACCOUNT%>">Account</a></li>
+                            <c:choose>
+                                <c:when test="${not empty LoginedAcc}">
+                                <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="MainController?action=<%= Action.ACCOUNT%>">Account</a></li>
+                                </c:when>
+                                <c:otherwise>
+                                <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="MainController?action=<%= Action.LOGIN%>">Account</a></li>
+                                </c:otherwise>
+                            </c:choose>
                         <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="MainController?action=<%= Action.CATEGORIES%>">Categories</a></li>
                         <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="MainController?action=<%= Action.PRODUCT%>">Product</a></li>
                         <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="MainController?action=<%= Action.CONTACT%>">Contact</a></li>
@@ -38,12 +45,12 @@
                     <c:choose>
                         <c:when test="${not empty LoginedAcc}">
                             <button class="px-4 py-2 bg-red-500 hover:bg-red-600 text-gray-50 rounded-xl flex items-center gap-2">
-                                <a href="MainController?action=<%= Action.LOGOUT %>">Logout</a>
+                                <a href="MainController?action=<%= Action.LOGOUT%>">Logout</a>
                             </button>
                         </c:when>
                         <c:otherwise>
                             <button class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2">
-                                <a href="MainController?action=<%= Action.LOGIN %>">Login</a>
+                                <a href="MainController?action=<%= Action.LOGIN%>">Login</a>
                             </button>
                         </c:otherwise>
                     </c:choose>
