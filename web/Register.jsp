@@ -13,7 +13,7 @@
         <title>Product</title>
     </head>
     <body>
-        <div class="bg-gray-100 flex items-center justify-center h-full w-full">
+        <div class="bg-gray-100 flex items-center justify-center h-full w-full p-8">
             <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-screen-xl">
                 <h2 class="text-2xl font-bold mb-6 text-gray-800">Add new account</h2>
                 <form action="MainController" method="post">
@@ -58,7 +58,7 @@
                         <label class="block text-gray-700">Role in system</label>
                         <select name="roleInSystem" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500" required>
                             <option value="1">Administrator</option>
-                            <option value="0">Staff</option>
+                            <option value="2">Staff</option>
                         </select>
                     </div>
                     <div class="mb-4">
