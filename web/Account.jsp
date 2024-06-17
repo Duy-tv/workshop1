@@ -68,7 +68,7 @@
                 </table>
                 <c:if test="${LoginedAcc.roleInSystem eq 1}">
                     <div class="flex w-full justify-center mt-7 hover:text-blue-500 hover:underline">
-                        <a href="MainController?action=<%= Action.REGISTER%>">Add new account</a>
+                        <a href="MainController?action=<%= Action.ADD_NEW%>">Add new account</a>
                     </div>
                 </c:if>
             </div>

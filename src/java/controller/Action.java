@@ -19,6 +19,7 @@ public interface Action {
     public final String PRODUCT = "product";
     public final String CATEGORIES = "categories";
     public final String CONTACT = "contact";
+    public final String ADD_NEW = "add";
     
     
     

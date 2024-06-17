@@ -49,6 +49,9 @@ public class MainController extends HttpServlet {
                 case Action.CONTACT:
                     url = Action.CONTACT_URL;
                     break;
+                case Action.ADD_NEW:
+                    url = Action.REGISTER_URL;
+                    break;
                 case Action.ACCOUNT:
                     url = "ListAccountsServlet";
                     break;
@@ -56,7 +59,7 @@ public class MainController extends HttpServlet {
                     url = Action.LOGIN_URL;
                     break;
                 case Action.REGISTER:
-                    url = Action.REGISTER_URL;
+                    url = "RegisterServlet";
                     break;
                 case Action.LOGOUT:
                     url = "LogoutServlet";
