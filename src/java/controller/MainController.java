@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import java.io.IOException;
@@ -12,29 +11,32 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Duy.Tran
  */
 public class MainController extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             request.setCharacterEncoding("UTF-8");
             String action = request.getParameter("action");
             String url = "";
-            if(action==null) {
+            if (action == null) {
                 url = Action.HOME;
             }
             switch (action) {
@@ -45,13 +47,16 @@ public class MainController extends HttpServlet {
                     url = Action.PRODUCT_URL;
                     break;
                 case Action.CATEGORIES:
-                    url= Action.CATEGORIES_URL;
+                    url = Action.CATEGORIES_URL;
                     break;
                 case Action.CONTACT:
                     url = Action.CONTACT_URL;
                     break;
                 case Action.ADD_NEW:
                     url = Action.REGISTER_URL;
+                    break;
+                    case Action.UPDATE:
+                    url = "LoadAccountServlet";
                     break;
                 case Action.ACCOUNT:
                     url = "ListAccountsServlet";
@@ -65,16 +70,23 @@ public class MainController extends HttpServlet {
                 case Action.LOGOUT:
                     url = "LogoutServlet";
                     break;
+                case Action.UPDATE_ACC:
+                    url = "UpdateAccServlet";
+                    break;
+                     case Action.DELETE:
+                    url = "DeleteAccServlet";
+                    break;
                 default:
                     throw new AssertionError();
             }
             request.getRequestDispatcher(url).forward(request, response);
         }
-    } 
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -82,12 +94,13 @@ public class MainController extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
-    /** 
+    /**
      * Handles the HTTP <code>POST</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -95,12 +108,13 @@ public class MainController extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     @Override

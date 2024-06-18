@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Register
-    Created on : Jun 16, 2024, 4:40:18 PM
+    Document   : UpdateAcc
+    Created on : Jun 18, 2024, 8:32:16 PM
     Author     : Duy.Tran
 --%>
 
@@ -16,12 +16,11 @@
     <body>
         <div class="bg-gray-100 flex items-center justify-center h-full w-full p-8">
             <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-screen-xl">
-                <h2 class="text-2xl font-bold mb-6 text-gray-800">Add new account</h2>
+                <h2 class="text-2xl font-bold mb-6 text-gray-800">Update account</h2>
                 <form action="MainController" method="post">
                     <div class="div-style">
                         <label class="label-style">Account</label>
-                        <p class="error-message">${message}</p>
-                        <input type="text" name="account" class="input-style" placeholder="Enter account" value="${param.account}" required>
+                        <input type="text" name="account" class="input-style" placeholder="Enter account" value="${param.account}" readonly>
                     </div>
                     <div class="div-style">
                         <label class="label-style">Password</label>
@@ -37,7 +36,7 @@
                     </div>
                     <div class="div-style">
                         <label class="label-style">Phone number</label>
-                        <p class="error-message">${message1}</p>
+                        <p class="error-message">${message}</p>
                         <input type="text" name="phone" class="input-style" placeholder="Phone number" value="${param.phone}" required>
                     </div>
                     <div class="div-style">
@@ -74,7 +73,7 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="button-style" name="action" value="<%= Action.REGISTER%>">Add</button>
+                        <button type="submit" class="button-style" name="action" value="<%= Action.UPDATE_ACC %>">Update</button>
                     </div>
                 </form>
             </div>

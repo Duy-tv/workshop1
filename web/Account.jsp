@@ -30,9 +30,7 @@
                             <th>Gender</th>
                             <th>Phone</th>
                             <th>Role in system</th>
-                            <c:if test="${LoginedAcc.roleInSystem eq 1}">
                             <th>Action</th>
-                            </c:if>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,26 +49,33 @@
                                             Staff
                                         </c:otherwise>
                                     </c:choose></td>
-                                
-                                    <c:if test="${LoginedAcc.roleInSystem eq 1}">
-                                        <td>
-                                        <form action="MainController" method="post">
-                                        <button class="update" type="submit" name="action" value="<%= Action.HOME%>">Update</button>
+
+
+                                <td>
+                                    <form action="MainController" method="post">
+                                        <input type="hidden" name="account" value="${account.account}" readonly />
+                                        <input type="hidden" name="password" value="${account.pass}" />
+                                        <input type="hidden" name="firstName" value="${account.firstName}" />
+                                        <input type="hidden" name="lastName" value="${account.lastName}" />
+                                        <input type="hidden" name="phone" value="${account.phone}" />
+                                        <input type="hidden" name="birthday" value="${account.birthday}" />
+                                        <input type="hidden" name="gender" value="${account.gender ? '1' : '0'}"/>
+                                        <input type="hidden" name="isUse" value="${account.isUse ? '1' : '0'}"/>
+                                        <input type="hidden" name="roleInSystem" value="${account.roleInSystem}" />
+                                        <button class="update" type="submit" name="action" value="<%= Action.UPDATE%>">Update</button>
                                         <button class="deactivate" type="submit" name="action" value="<%= Action.HOME%>">${account.isUse ? 'Deactivate' : 'Activate'}</button>
-                                        <button class="delete" type="submit" name="action" value="<%= Action.HOME%>">Delete</button>
+                                        <button class="delete" type="submit" name="action" value="<%= Action.DELETE%>">Delete</button>
                                     </form>
-                                    </td>
-                                    </c:if>
-                                
+                                </td>
+
+
                             </tr>
                         </c:forEach>
                     </tbody>
                 </table>
-                <c:if test="${LoginedAcc.roleInSystem eq 1}">
-                    <div class="flex w-full justify-center mt-7 hover:text-blue-500 hover:underline">
-                        <a href="MainController?action=<%= Action.ADD_NEW%>">Add new account</a>
-                    </div>
-                </c:if>
+                <div class="flex w-full justify-center mt-7 hover:text-blue-500 hover:underline">
+                    <a href="MainController?action=<%= Action.ADD_NEW%>">Add new account</a>
+                </div>
             </div>
         </div>
     </body>

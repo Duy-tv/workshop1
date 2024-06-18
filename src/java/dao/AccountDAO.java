@@ -58,13 +58,65 @@ public class AccountDAO implements Accessible<Account> {
 
     @Override
     public int updatetRec(Account obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int rs = 0;
+        Connection cn = null;
+        PreparedStatement pst = null;
+        try {
+            cn = MyLib.makeConnection();
+            if (cn != null) {
+                String sql = "update [dbo].[accounts] set [account] = ?, [pass] = ?, [lastName] = ?, [firstName] = ?, [birthday] = ?, [gender] = ?, [phone] = ?, [isUse] = ?, [roleInSystem] = ? where [account] = ?";
+                pst = cn.prepareStatement(sql);
+                pst.setString(1, obj.getAccount());
+                pst.setString(2, obj.getPass());
+                pst.setNString(3, obj.getLastName());
+                pst.setNString(4, obj.getFirstName());
+                pst.setDate(5, obj.getBirthday());
+                pst.setBoolean(6, obj.isGender());
+                pst.setString(7, obj.getPhone());
+                pst.setBoolean(8, obj.isIsUse());
+                pst.setInt(9, obj.getRoleInSystem());
+                pst.setString(10, obj.getAccount());
+                rs = pst.executeUpdate();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return rs;
     }
 
     @Override
     public int deleteRec(Account obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         int rs=0;
+        Connection cn=null;
+        try{
+            cn=MyLib.makeConnection();
+            if(cn!=null){
+                String sql = "delete from [dbo].[accounts] where [account] = ?";
+                PreparedStatement pst=cn.prepareStatement(sql);
+                 pst.setString(1, obj.getAccount());
+                rs=pst.executeUpdate();
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            try{
+                if(cn!=null) cn.close();
+            }catch(Exception e){ e.printStackTrace();}
+        }
+        
+        return rs;
     }
+    
 
     @Override
     public Account getObjectById(String id) {

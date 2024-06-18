@@ -24,6 +24,14 @@
         <servlet-name>UpdateAccServlet</servlet-name>
         <servlet-class>controller.UpdateAccServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadAccountServlet</servlet-name>
+        <servlet-class>controller.LoadAccountServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAccServlet</servlet-name>
+        <servlet-class>controller.DeleteAccServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -48,6 +56,14 @@
         <servlet-name>UpdateAccServlet</servlet-name>
         <url-pattern>/UpdateAccServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadAccountServlet</servlet-name>
+        <url-pattern>/LoadAccountServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAccServlet</servlet-name>
+        <url-pattern>/DeleteAccServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -56,4 +72,8 @@
     <welcome-file-list>
         <welcome-file>Index.jsp</welcome-file>
     </welcome-file-list>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error404.html</location>
+    </error-page>
 </web-app>

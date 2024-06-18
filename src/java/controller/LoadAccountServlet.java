@@ -14,13 +14,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Duy.Tran
  */
-public class RegisterServlet extends HttpServlet {
+public class LoadAccountServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,52 +34,33 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            request.setCharacterEncoding("UTF-8");
+            /* TODO output your page here. You may use following sample code. */
             String account = request.getParameter("account");
             String password = request.getParameter("password");
             String lastName = request.getParameter("lastName");
             String firstName = request.getParameter("firstName");
             String phone = request.getParameter("phone");
             Date birthday = Date.valueOf(request.getParameter("birthday"));
-            boolean gender = request.getParameter("gender").equals("1");
+             boolean gender = request.getParameter("gender").equals("1");
             boolean isUse = request.getParameter("isUse").equals("1");
             int roleInSystem = Integer.parseInt(request.getParameter("roleInSystem"));
-            String message = "";
-            String message1 = "";
             String url = "";
-
-            boolean isValidPhone = phone.matches("^(03|05|07|08|09)\\d{8}$");
-
-            Account obj = new Account(account, password, lastName, firstName, birthday, gender, phone, isUse, roleInSystem);
             AccountDAO acc = new AccountDAO();
-            Account checkAccount = acc.checkAcc(account);
-            if (checkAccount != null) {
-                message = "Account already exists";
-                request.setAttribute("message", message);
-                url = Action.REGISTER_URL;
+            Account accountDetails = acc.checkAcc(account);
+            if (accountDetails != null) {
+                request.setAttribute("account", account);
+                request.setAttribute("password", password);
+                request.setAttribute("lastName", lastName);
+                request.setAttribute("firstName", firstName);
+                request.setAttribute("phone", phone);
+                request.setAttribute("birthday", birthday);
+                request.setAttribute("gender", gender);
+                request.setAttribute("isUse", isUse);
+                request.setAttribute("roleInSystem", roleInSystem);
+                url = "UpdateAcc.jsp";
             } else {
-                if (!isValidPhone) {
-                    message1 = "Phone number must be digit and begin with 03|05|07|08|09";
-                    request.setAttribute("message1", message1);
-                    url = Action.REGISTER_URL;
-                } else {
-                    int rs = acc.insertRec(obj);
-                    if (rs >= 1) {
-                        url = "MainController?action=" + Action.ACCOUNT;
-                    } else {
-                        url = "MainController?action=" + Action.ACCOUNT;
-                    }
-                }
+                url = "error404.html";
             }
-            request.setAttribute("account", account);
-            request.setAttribute("password", password);
-            request.setAttribute("lastName", lastName);
-            request.setAttribute("firstName", firstName);
-            request.setAttribute("phone", phone);
-            request.setAttribute("birthday", request.getParameter("birthday"));
-            request.setAttribute("gender", request.getParameter("gender"));
-            request.setAttribute("isUse", request.getParameter("isUse"));
-            request.setAttribute("roleInSystem", request.getParameter("roleInSystem"));
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

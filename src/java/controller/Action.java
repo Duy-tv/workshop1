@@ -20,7 +20,9 @@ public interface Action {
     public final String CATEGORIES = "categories";
     public final String CONTACT = "contact";
     public final String ADD_NEW = "add";
-    
+    public final String UPDATE = "update";
+    public final String UPDATE_ACC = "updateAcc";
+    public final String DELETE = "delete";
     
     
     public final String HOME_URL = "Index.jsp";
@@ -30,5 +32,5 @@ public interface Action {
     public final String CONTACT_URL = "Contact.jsp";
     public final String LOGIN_URL = "Login.jsp";
     public final String REGISTER_URL = "Register.jsp";
-    
+    public final String UPDATE_ACCOUNT_URL = "UpdateAcc.jsp";
 }

@@ -39,12 +39,8 @@ public class ListAccountsServlet extends HttpServlet {
             AccountDAO accountDAO = new AccountDAO();
             List<Account> accountList = accountDAO.listAll();
             request.setAttribute("accountList", accountList);
-            HttpSession session = request.getSession();
-            if (session.getAttribute("LoginedAcc") != null) {
-                request.getRequestDispatcher("Account.jsp").forward(request, response);
-            } else {
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
-            }
+            request.getRequestDispatcher("Account.jsp").forward(request, response);
+
         }
     }
 
