@@ -53,7 +53,7 @@
 
                                 <td>
                                     <form action="MainController" method="post">
-                                        <input type="hidden" name="account" value="${account.account}" readonly />
+                                        <input type="hidden" name="account" value="${account.account}" />
                                         <input type="hidden" name="password" value="${account.pass}" />
                                         <input type="hidden" name="firstName" value="${account.firstName}" />
                                         <input type="hidden" name="lastName" value="${account.lastName}" />

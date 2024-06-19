@@ -20,7 +20,7 @@
                 <form action="MainController" method="post">
                     <div class="div-style">
                         <label class="label-style">Account</label>
-                        <input type="text" name="account" class="input-style" placeholder="Enter account" value="${param.account}" readonly>
+                        <input type="text" name="account" class="input-style cursor-not-allowed bg-gray-100" placeholder="Enter account" value="${param.account}" readonly>
                     </div>
                     <div class="div-style">
                         <label class="label-style">Password</label>
