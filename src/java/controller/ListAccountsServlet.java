@@ -39,7 +39,7 @@ public class ListAccountsServlet extends HttpServlet {
             AccountDAO accountDAO = new AccountDAO();
             List<Account> accountList = accountDAO.listAll();
             request.setAttribute("accountList", accountList);
-            request.getRequestDispatcher("Account.jsp").forward(request, response);
+            request.getRequestDispatcher(Action.ACCOUNT_URL).forward(request, response);
 
         }
     }

@@ -25,12 +25,13 @@ public interface Action {
     public final String DELETE = "delete";
     
     
-    public final String HOME_URL = "Index.jsp";
-    public final String ACCOUNT_URL = "Account.jsp";
-    public final String PRODUCT_URL = "Product.jsp";
-    public final String CATEGORIES_URL = "Categories.jsp";
-    public final String CONTACT_URL = "Contact.jsp";
-    public final String LOGIN_URL = "Login.jsp";
-    public final String REGISTER_URL = "Register.jsp";
-    public final String UPDATE_ACCOUNT_URL = "UpdateAcc.jsp";
+    public final String HOME_URL = "index.jsp";
+    public final String ACCOUNT_URL = "account.jsp";
+    public final String PRODUCT_URL = "product.jsp";
+    public final String CATEGORIES_URL = "categories.jsp";
+    public final String CONTACT_URL = "contact.jsp";
+    public final String LOGIN_URL = "login.jsp";
+    public final String REGISTER_URL = "register.jsp";
+    public final String UPDATE_ACCOUNT_URL = "updateAcc.jsp";
+    public final String ERROR_URL = "error404.html";
 }

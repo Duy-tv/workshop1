@@ -49,7 +49,7 @@ public class UpdateAccServlet extends HttpServlet {
             String url = "";
 
             boolean isValidPhone = phone.matches("^(03|05|07|08|09)\\d{8}$");
-
+            
             Account obj = new Account(account, password, lastName, firstName, birthday, gender, phone, isUse, roleInSystem);
             AccountDAO acc = new AccountDAO();
 

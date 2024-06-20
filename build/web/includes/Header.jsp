@@ -20,8 +20,8 @@
         <nav class="bg-gray-200 shadow shadow-gray-300 w-100 px-8 md:px-auto sticky top-0 z-50">
             <div class="md:h-16 h-28 mx-auto md:px-4 container flex items-center justify-between flex-wrap md:flex-nowrap">
                 <div>
-                    <c:if test="${not empty LoginedAcc}">
-                        <p>Welcome <span style="color: red; font-weight: bold">${LoginedAcc.account}</span> ${LoginedAcc.lastName} ${LoginedAcc.firstName}</p>
+                    <c:if test="${not empty loginedAcc}">
+                        <p>Welcome <span style="color: red; font-weight: bold">${loginedAcc.account}</span> ${loginedAcc.lastName} ${loginedAcc.firstName}</p>
                     </c:if>
                 </div>
                 <div class="text-gray-500 order-3 w-full md:w-auto md:order-2">
@@ -36,7 +36,7 @@
                 <div class="order-2 md:order-3">
 
                     <c:choose>
-                        <c:when test="${not empty LoginedAcc}">
+                        <c:when test="${not empty loginedAcc}">
                             <button class="px-4 py-2 bg-red-500 hover:bg-red-600 text-gray-50 rounded-xl flex items-center gap-2">
                                 <a href="MainController?action=<%= Action.LOGOUT%>">Logout</a>
                             </button>

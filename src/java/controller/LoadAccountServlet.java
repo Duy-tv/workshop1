@@ -57,9 +57,9 @@ public class LoadAccountServlet extends HttpServlet {
                 request.setAttribute("gender", gender);
                 request.setAttribute("isUse", isUse);
                 request.setAttribute("roleInSystem", roleInSystem);
-                url = "UpdateAcc.jsp";
+                url = Action.UPDATE_ACCOUNT_URL;
             } else {
-                url = "error404.html";
+                url = Action.ERROR_URL;
             }
             request.getRequestDispatcher(url).forward(request, response);
         }

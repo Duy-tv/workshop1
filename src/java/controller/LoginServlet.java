@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
                 Account acc = ad.getUserLogin(account, password);
                 if (acc != null && acc.isIsUse()) {
                     HttpSession session = request.getSession();
-                    session.setAttribute("LoginedAcc", acc);
+                    session.setAttribute("loginedAcc", acc);
                     url = Action.HOME_URL;
                 } else {
                     message = "Account does not exist or password is wrong";
