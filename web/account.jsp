@@ -36,7 +36,7 @@
                     <tbody>
                         <c:set var="currentAccount" value="${loginedAcc.account}"></c:set>
                         <c:forEach var="account" items="${accountList}">
-                            
+
                             <c:if test="${!account.account.equals(currentAccount) }">
                                 <tr>
                                     <td>${account.account}</td>
