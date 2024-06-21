@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import controller.Action;
 
-public final class Account_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class account_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -13,8 +13,9 @@ public final class Account_jsp extends org.apache.jasper.runtime.HttpJspBase
   private static java.util.List<String> _jspx_dependants;
 
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_forEach_var_items;
-  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_choose;
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_set_var_value_nobody;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_if_test;
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_choose;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_otherwise;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_when_test;
 
@@ -26,16 +27,18 @@ public final class Account_jsp extends org.apache.jasper.runtime.HttpJspBase
 
   public void _jspInit() {
     _jspx_tagPool_c_forEach_var_items = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
-    _jspx_tagPool_c_choose = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _jspx_tagPool_c_set_var_value_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_c_if_test = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _jspx_tagPool_c_choose = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_c_otherwise = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_c_when_test = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
   }
 
   public void _jspDestroy() {
     _jspx_tagPool_c_forEach_var_items.release();
-    _jspx_tagPool_c_choose.release();
+    _jspx_tagPool_c_set_var_value_nobody.release();
     _jspx_tagPool_c_if_test.release();
+    _jspx_tagPool_c_choose.release();
     _jspx_tagPool_c_otherwise.release();
     _jspx_tagPool_c_when_test.release();
   }
@@ -99,6 +102,10 @@ public final class Account_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    </thead>\n");
       out.write("                    <tbody>\n");
       out.write("                        ");
+      if (_jspx_meth_c_set_0(_jspx_page_context))
+        return;
+      out.write("\n");
+      out.write("                        ");
       //  c:forEach
       org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_0 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
       _jspx_th_c_forEach_0.setPageContext(_jspx_page_context);
@@ -111,46 +118,101 @@ public final class Account_jsp extends org.apache.jasper.runtime.HttpJspBase
         if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
           do {
             out.write("\n");
-            out.write("                            <tr>\n");
-            out.write("                                <td>");
-            out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.account}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-            out.write("</td>\n");
-            out.write("                                <td>");
-            out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.firstName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-            out.write(',');
-            out.write(' ');
-            out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.lastName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-            out.write("</td>\n");
-            out.write("                                <td>");
-            out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.birthday}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-            out.write("</td>\n");
-            out.write("                                <td>");
-            out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.gender ? 'Male' : 'Female'}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-            out.write("</td>\n");
-            out.write("                                <td>");
-            out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.phone}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-            out.write("</td>\n");
-            out.write("                                <td>");
-            if (_jspx_meth_c_choose_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
+            out.write("                            \n");
+            out.write("                            ");
+            //  c:if
+            org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_0 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
+            _jspx_th_c_if_0.setPageContext(_jspx_page_context);
+            _jspx_th_c_if_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
+            _jspx_th_c_if_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${!account.account.equals(currentAccount) }", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+            int _jspx_eval_c_if_0 = _jspx_th_c_if_0.doStartTag();
+            if (_jspx_eval_c_if_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+              do {
+                out.write("\n");
+                out.write("                                <tr>\n");
+                out.write("                                    <td>");
+                out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.account}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+                out.write("</td>\n");
+                out.write("                                    <td>");
+                out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.firstName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+                out.write(',');
+                out.write(' ');
+                out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.lastName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+                out.write("</td>\n");
+                out.write("                                    <td>");
+                out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.birthday}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+                out.write("</td>\n");
+                out.write("                                    <td>");
+                out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.gender ? 'Male' : 'Female'}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+                out.write("</td>\n");
+                out.write("                                    <td>");
+                out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.phone}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+                out.write("</td>\n");
+                out.write("                                    <td>");
+                if (_jspx_meth_c_choose_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_if_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
+                  return;
+                out.write("</td>\n");
+                out.write("\n");
+                out.write("\n");
+                out.write("                                    <td>\n");
+                out.write("                                        <form action=\"MainController\" method=\"post\">\n");
+                out.write("                                            <input type=\"hidden\" name=\"account\" value=\"");
+                out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.account}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+                out.write("\" />\n");
+                out.write("                                            <input type=\"hidden\" name=\"password\" value=\"");
+                out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.pass}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+                out.write("\" />\n");
+                out.write("                                            <input type=\"hidden\" name=\"firstName\" value=\"");
+                out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.firstName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+                out.write("\" />\n");
+                out.write("                                            <input type=\"hidden\" name=\"lastName\" value=\"");
+                out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.lastName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+                out.write("\" />\n");
+                out.write("                                            <input type=\"hidden\" name=\"phone\" value=\"");
+                out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.phone}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+                out.write("\" />\n");
+                out.write("                                            <input type=\"hidden\" name=\"birthday\" value=\"");
+                out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.birthday}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+                out.write("\" />\n");
+                out.write("                                            <input type=\"hidden\" name=\"gender\" value=\"");
+                out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.gender ? '1' : '0'}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+                out.write("\"/>\n");
+                out.write("                                            <input type=\"hidden\" name=\"isUse\" value=\"");
+                out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.isUse ? '1' : '0'}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+                out.write("\"/>\n");
+                out.write("                                            <input type=\"hidden\" name=\"roleInSystem\" value=\"");
+                out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.roleInSystem}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+                out.write("\" />\n");
+                out.write("                                            <button class=\"update\" type=\"submit\" name=\"action\" value=\"");
+                out.print( Action.UPDATE);
+                out.write("\">Update</button>\n");
+                out.write("                                            <button class=\"deactivate\" type=\"submit\" name=\"action\" value=\"");
+                out.print( Action.ACTIVE);
+                out.write('"');
+                out.write('>');
+                out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.isUse ? 'Deactivate' : 'Activate'}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+                out.write("</button>\n");
+                out.write("                                            <button class=\"delete\" type=\"submit\" name=\"action\" value=\"");
+                out.print( Action.DELETE);
+                out.write("\">Delete</button>\n");
+                out.write("                                        </form>\n");
+                out.write("                                    </td>\n");
+                out.write("\n");
+                out.write("\n");
+                out.write("                                </tr>\n");
+                out.write("                            ");
+                int evalDoAfterBody = _jspx_th_c_if_0.doAfterBody();
+                if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+                  break;
+              } while (true);
+            }
+            if (_jspx_th_c_if_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+              _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_0);
               return;
-            out.write("</td>\n");
-            out.write("                                <td>\n");
-            out.write("                                    <form action=\"MainController\" method=\"post\">\n");
-            out.write("                                        <button class=\"update\" type=\"submit\" name=\"action\" value=\"");
-            out.print( Action.HOME);
-            out.write("\">Update</button>\n");
-            out.write("                                        <button class=\"deactivate\" type=\"submit\" name=\"action\" value=\"");
-            out.print( Action.HOME);
-            out.write('"');
-            out.write('>');
-            out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.isUse ? 'Deactivate' : 'Activate'}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-            out.write("</button>\n");
-            out.write("                                        <button class=\"delete\" type=\"submit\" name=\"action\" value=\"");
-            out.print( Action.HOME);
-            out.write("\">Delete</button>\n");
-            out.write("                                    </form>\n");
-            out.write("                                </td>\n");
-            out.write("                            </tr>\n");
+            }
+            _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_0);
+            out.write("\n");
+            out.write("\n");
             out.write("                        ");
             int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
             if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -171,37 +233,11 @@ public final class Account_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("                    </tbody>\n");
       out.write("                </table>\n");
-      out.write("\n");
-      out.write("                ");
-      //  c:if
-      org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_0 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
-      _jspx_th_c_if_0.setPageContext(_jspx_page_context);
-      _jspx_th_c_if_0.setParent(null);
-      _jspx_th_c_if_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${account.roleInSystem eq 1}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
-      int _jspx_eval_c_if_0 = _jspx_th_c_if_0.doStartTag();
-      if (_jspx_eval_c_if_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
-        do {
-          out.write("\n");
-          out.write("                    \n");
-          out.write("                        <div class=\"flex w-full justify-center mt-7 hover:text-blue-500 hover:underline\">\n");
-          out.write("                            <a href=\"MainController?action=");
-          out.print( Action.REGISTER);
-          out.write("\">Add new account</a>\n");
-          out.write("                        </div>\n");
-          out.write("                    \n");
-          out.write("                ");
-          int evalDoAfterBody = _jspx_th_c_if_0.doAfterBody();
-          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
-            break;
-        } while (true);
-      }
-      if (_jspx_th_c_if_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-        _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_0);
-        return;
-      }
-      _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_0);
-      out.write("\n");
-      out.write("                \n");
+      out.write("                <div class=\"flex w-full justify-center mt-7 hover:text-blue-500 hover:underline\">\n");
+      out.write("                    <a href=\"MainController?action=");
+      out.print( Action.ADD_NEW);
+      out.write("\">Add new account</a>\n");
+      out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("        </div>\n");
       out.write("    </body>\n");
@@ -219,27 +255,46 @@ public final class Account_jsp extends org.apache.jasper.runtime.HttpJspBase
     }
   }
 
-  private boolean _jspx_meth_c_choose_0(javax.servlet.jsp.tagext.JspTag _jspx_th_c_forEach_0, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_0)
+  private boolean _jspx_meth_c_set_0(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:set
+    org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_0 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
+    _jspx_th_c_set_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_set_0.setParent(null);
+    _jspx_th_c_set_0.setVar("currentAccount");
+    _jspx_th_c_set_0.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${loginedAcc.account}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int _jspx_eval_c_set_0 = _jspx_th_c_set_0.doStartTag();
+    if (_jspx_th_c_set_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_0);
+      return true;
+    }
+    _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_0);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_choose_0(javax.servlet.jsp.tagext.JspTag _jspx_th_c_if_0, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_0)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
     JspWriter out = _jspx_page_context.getOut();
     //  c:choose
     org.apache.taglibs.standard.tag.common.core.ChooseTag _jspx_th_c_choose_0 = (org.apache.taglibs.standard.tag.common.core.ChooseTag) _jspx_tagPool_c_choose.get(org.apache.taglibs.standard.tag.common.core.ChooseTag.class);
     _jspx_th_c_choose_0.setPageContext(_jspx_page_context);
-    _jspx_th_c_choose_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
+    _jspx_th_c_choose_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_if_0);
     int _jspx_eval_c_choose_0 = _jspx_th_c_choose_0.doStartTag();
     if (_jspx_eval_c_choose_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\n");
-        out.write("                                        ");
+        out.write("                                            ");
         if (_jspx_meth_c_when_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
           return true;
         out.write("\n");
-        out.write("                                        ");
+        out.write("                                            ");
         if (_jspx_meth_c_otherwise_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
           return true;
         out.write("\n");
-        out.write("                                    ");
+        out.write("                                        ");
         int evalDoAfterBody = _jspx_th_c_choose_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -266,8 +321,8 @@ public final class Account_jsp extends org.apache.jasper.runtime.HttpJspBase
     if (_jspx_eval_c_when_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\n");
-        out.write("                                            Administrator\n");
-        out.write("                                        ");
+        out.write("                                                Administrator\n");
+        out.write("                                            ");
         int evalDoAfterBody = _jspx_th_c_when_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -293,8 +348,8 @@ public final class Account_jsp extends org.apache.jasper.runtime.HttpJspBase
     if (_jspx_eval_c_otherwise_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\n");
-        out.write("                                            Staff\n");
-        out.write("                                        ");
+        out.write("                                                Staff\n");
+        out.write("                                            ");
         int evalDoAfterBody = _jspx_th_c_otherwise_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;

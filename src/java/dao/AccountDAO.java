@@ -93,30 +93,62 @@ public class AccountDAO implements Accessible<Account> {
         return rs;
     }
 
+    public int updateStatus(String account, boolean isUse) {
+        int rs = 0;
+        Connection cn = null;
+        PreparedStatement pst = null;
+        try {
+            cn = MyLib.makeConnection();
+            if (cn != null) {
+                String sql = "update [dbo].[accounts] set [isUse] = ? where [account] = ?";
+                pst = cn.prepareStatement(sql);
+                pst.setBoolean(1, isUse);
+                pst.setString(2, account);
+                rs = pst.executeUpdate();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return rs;
+
+    }
+
     @Override
     public int deleteRec(Account obj) {
-         int rs=0;
-        Connection cn=null;
-        try{
-            cn=MyLib.makeConnection();
-            if(cn!=null){
+        int rs = 0;
+        Connection cn = null;
+        try {
+            cn = MyLib.makeConnection();
+            if (cn != null) {
                 String sql = "delete from [dbo].[accounts] where [account] = ?";
-                PreparedStatement pst=cn.prepareStatement(sql);
-                 pst.setString(1, obj.getAccount());
-                rs=pst.executeUpdate();
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, obj.getAccount());
+                rs = pst.executeUpdate();
             }
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
-            try{
-                if(cn!=null) cn.close();
-            }catch(Exception e){ e.printStackTrace();}
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        
+
         return rs;
     }
-    
 
     @Override
     public Account getObjectById(String id) {
@@ -202,7 +234,7 @@ public class AccountDAO implements Accessible<Account> {
         }
         return acc;
     }
-    
+
     public Account checkAcc(String account) {
         Account acc = null;
         Connection cn = null;

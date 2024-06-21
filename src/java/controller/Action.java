@@ -23,6 +23,7 @@ public interface Action {
     public final String UPDATE = "update";
     public final String UPDATE_ACC = "updateAcc";
     public final String DELETE = "delete";
+    public final String ACTIVE = "active";
     
     
     public final String HOME_URL = "index.jsp";

@@ -5,19 +5,19 @@
  */
 package controller;
 
+import dao.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Duy.Tran
  */
-public class MainController extends HttpServlet {
+public class ActiveServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,61 +33,27 @@ public class MainController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            request.setCharacterEncoding("UTF-8");
-            String action = request.getParameter("action");
-            String url = "";
-            if (action == null) {
-                url = Action.HOME;
-            }
-            switch (action) {
-                case Action.HOME:
-                    url = Action.HOME_URL;
-                    break;
-                case Action.PRODUCT:
-                    url = Action.PRODUCT_URL;
-                    break;
-                case Action.CATEGORIES:
-                    url = Action.CATEGORIES_URL;
-                    break;
-                case Action.CONTACT:
-                    url = Action.CONTACT_URL;
-                    break;
-                case Action.ADD_NEW:
-                    url = Action.REGISTER_URL;
-                    break;
-                case Action.LOGIN:
-                    url = Action.LOGIN_URL;
-                    break;
+            String isUseParam = request.getParameter("isUse");
+            String accountParam = request.getParameter("account");
 
-                case Action.UPDATE:
-                    url = "LoadAccountServlet";
-                    break;
-                case Action.ACCOUNT:
-                    url = "ListAccountsServlet";
-                    break;
-                case Action.REGISTER:
-                    url = "RegisterServlet";
-                    break;
-                case Action.LOGOUT:
-                    url = "LogoutServlet";
-                    break;
-                case Action.UPDATE_ACC:
-                    url = "UpdateAccServlet";
-                    break;
-                case Action.DELETE:
-                    url = "DeleteAccServlet";
-                    break;
-                case Action.ACTIVE:
-                    url = "ActiveServlet";
-                    break;
-                default:
-                    throw new AssertionError();
+            if (isUseParam != null && accountParam != null) {
+                boolean isUse = isUseParam.equals("1");
+                AccountDAO obj = new AccountDAO();
+                if (!isUse) {
+                    isUse = true;
+                } else {
+                    isUse = false;
+                }
+
+                obj.updateStatus(accountParam, isUse);
+                response.sendRedirect("MainController?action=" + Action.ACCOUNT);
             }
-            request.getRequestDispatcher(url).forward(request, response);
+            
         }
+
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

@@ -32,6 +32,10 @@
         <servlet-name>DeleteAccServlet</servlet-name>
         <servlet-class>controller.DeleteAccServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ActiveServlet</servlet-name>
+        <servlet-class>controller.ActiveServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>DeleteAccServlet</servlet-name>
         <url-pattern>/DeleteAccServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActiveServlet</servlet-name>
+        <url-pattern>/ActiveServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
