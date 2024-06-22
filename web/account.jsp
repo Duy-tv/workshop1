@@ -65,7 +65,7 @@
                                             <input type="hidden" name="gender" value="${account.gender ? '1' : '0'}"/>
                                             <input type="hidden" name="isUse" value="${account.isUse ? '1' : '0'}"/>
                                             <input type="hidden" name="roleInSystem" value="${account.roleInSystem}" />
-                                            <button class="update" type="submit" name="action" value="<%= Action.UPDATE%>">Update</button>
+                                            <button class="update" type="submit" name="action" value="<%= Action.UPDATE %>">Update</button>
                                             <button class="deactivate" type="submit" name="action" value="<%= Action.ACTIVE%>">${account.isUse ? 'Deactivate' : 'Activate'}</button>
                                             <button class="delete" type="submit" name="action" value="<%= Action.DELETE%>">Delete</button>
                                         </form>

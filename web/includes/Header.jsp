@@ -28,7 +28,7 @@
                     <ul class="flex font-semibold justify-between">
                         <li class="md:px-4 md:py-2 text-indigo-500"><a href="MainController?action=<%= Action.HOME%>">Home</a></li>
                         <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="MainController?action=<%= Action.ACCOUNT%>">Account</a></li>
-                        <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="MainController?action=<%= Action.CATEGORIES%>">Categories</a></li>
+                        <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="MainController?action=<%= Action.CATEGORY%>">Categories</a></li>
                         <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="MainController?action=<%= Action.PRODUCT%>">Product</a></li>
                         <li class="md:px-4 md:py-2 hover:text-indigo-400"><a href="MainController?action=<%= Action.CONTACT%>">Contact</a></li>
                     </ul>

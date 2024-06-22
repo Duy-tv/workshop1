@@ -3,24 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package controller.category;
 
-import dao.AccountDAO;
-import dto.Account;
+import controller.Action;
+import controller.Navigation;
+import dao.CategoryDAO;
+import dto.Category;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Duy.Tran
  */
-public class ListAccountsServlet extends HttpServlet {
+public class AddCategoryServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,17 +36,18 @@ public class ListAccountsServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            AccountDAO accountDAO = new AccountDAO();
-            List<Account> accountList = accountDAO.listAll();
-            request.setAttribute("accountList", accountList);
-            HttpSession session = request.getSession();
-            if(session.getAttribute("loginedAcc")!=null) {
-                 request.getRequestDispatcher(Action.ACCOUNT_URL).forward(request, response);
+            String categoryName = request.getParameter("categoryName");
+            String memo = request.getParameter("memo");
+            String url = "";
+            CategoryDAO categoryDAO = new CategoryDAO();
+            Category cat = new Category(categoryName, memo);
+            int rs = categoryDAO.insertRec(cat);
+            if(rs >= 1) {
+                url = "MainController?action=" + Action.CATEGORY;
             } else {
-                 request.getRequestDispatcher(Action.LOGIN_URL).forward(request, response);
+                url = "MainController?action=" + Action.CATEGORY;
             }
-           
-
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

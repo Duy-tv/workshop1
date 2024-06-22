@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package controller.account;
 
+import controller.Action;
+import controller.Navigation;
 import dao.AccountDAO;
 import dto.Account;
 import java.io.IOException;
@@ -19,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Duy.Tran
  */
-public class LoadAccountServlet extends HttpServlet {
+public class RegisterServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,33 +36,52 @@ public class LoadAccountServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            request.setCharacterEncoding("UTF-8");
             String account = request.getParameter("account");
             String password = request.getParameter("password");
             String lastName = request.getParameter("lastName");
             String firstName = request.getParameter("firstName");
             String phone = request.getParameter("phone");
             Date birthday = Date.valueOf(request.getParameter("birthday"));
-             boolean gender = request.getParameter("gender").equals("1");
+            boolean gender = request.getParameter("gender").equals("1");
             boolean isUse = request.getParameter("isUse").equals("1");
             int roleInSystem = Integer.parseInt(request.getParameter("roleInSystem"));
+            String message = "";
+            String message1 = "";
             String url = "";
+
+            boolean isValidPhone = phone.matches("^(03|05|07|08|09)\\d{8}$");
+
+            Account obj = new Account(account, password, lastName, firstName, birthday, gender, phone, isUse, roleInSystem);
             AccountDAO acc = new AccountDAO();
-            Account accountDetails = acc.checkAcc(account);
-            if (accountDetails != null) {
-                request.setAttribute("account", account);
-                request.setAttribute("password", password);
-                request.setAttribute("lastName", lastName);
-                request.setAttribute("firstName", firstName);
-                request.setAttribute("phone", phone);
-                request.setAttribute("birthday", birthday);
-                request.setAttribute("gender", gender);
-                request.setAttribute("isUse", isUse);
-                request.setAttribute("roleInSystem", roleInSystem);
-                url = Action.UPDATE_ACCOUNT_URL;
+            Account checkAccount = acc.checkAcc(account);
+            if (checkAccount != null) {
+                message = "Account already exists";
+                request.setAttribute("message", message);
+                url = Navigation.REGISTER_URL;
             } else {
-                url = Action.ERROR_URL;
+                if (!isValidPhone) {
+                    message1 = "Phone number must be digit and begin with 03|05|07|08|09";
+                    request.setAttribute("message1", message1);
+                    url = Navigation.REGISTER_URL;
+                } else {
+                    int rs = acc.insertRec(obj);
+                    if (rs >= 1) {
+                        url = "MainController?action=" + Action.ACCOUNT;
+                    } else {
+                        url = "MainController?action=" + Action.ACCOUNT;
+                    }
+                }
             }
+            request.setAttribute("account", account);
+            request.setAttribute("password", password);
+            request.setAttribute("lastName", lastName);
+            request.setAttribute("firstName", firstName);
+            request.setAttribute("phone", phone);
+            request.setAttribute("birthday", request.getParameter("birthday"));
+            request.setAttribute("gender", request.getParameter("gender"));
+            request.setAttribute("isUse", request.getParameter("isUse"));
+            request.setAttribute("roleInSystem", request.getParameter("roleInSystem"));
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

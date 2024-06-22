@@ -10,11 +10,11 @@
     </servlet>
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
-        <servlet-class>controller.RegisterServlet</servlet-class>
+        <servlet-class>controller.account.RegisterServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ListAccountsServlet</servlet-name>
-        <servlet-class>controller.ListAccountsServlet</servlet-class>
+        <servlet-class>controller.account.ListAccountsServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
@@ -22,19 +22,31 @@
     </servlet>
     <servlet>
         <servlet-name>UpdateAccServlet</servlet-name>
-        <servlet-class>controller.UpdateAccServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>LoadAccountServlet</servlet-name>
-        <servlet-class>controller.LoadAccountServlet</servlet-class>
+        <servlet-class>controller.account.UpdateAccServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteAccServlet</servlet-name>
-        <servlet-class>controller.DeleteAccServlet</servlet-class>
+        <servlet-class>controller.account.DeleteAccServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ActiveServlet</servlet-name>
-        <servlet-class>controller.ActiveServlet</servlet-class>
+        <servlet-class>controller.account.ActiveServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListCategoryServlet</servlet-name>
+        <servlet-class>controller.category.ListCategoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCategoryServlet</servlet-name>
+        <servlet-class>controller.category.UpdateCategoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddCategoryServlet</servlet-name>
+        <servlet-class>controller.category.AddCategoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCategoryServlet</servlet-name>
+        <servlet-class>controller.category.DeleteCategoryServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -61,16 +73,28 @@
         <url-pattern>/UpdateAccServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LoadAccountServlet</servlet-name>
-        <url-pattern>/LoadAccountServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>DeleteAccServlet</servlet-name>
         <url-pattern>/DeleteAccServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ActiveServlet</servlet-name>
         <url-pattern>/ActiveServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListCategoryServlet</servlet-name>
+        <url-pattern>/ListCategoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCategoryServlet</servlet-name>
+        <url-pattern>/UpdateCategoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddCategoryServlet</servlet-name>
+        <url-pattern>/AddCategoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCategoryServlet</servlet-name>
+        <url-pattern>/DeleteCategoryServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -3,23 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package controller.account;
 
+import controller.Action;
+import controller.Navigation;
 import dao.AccountDAO;
 import dto.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Duy.Tran
  */
-public class LoginServlet extends HttpServlet {
+public class UpdateAccServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,22 +37,40 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String url = "";
-            String account = request.getParameter("txtaccount");
-            String password = request.getParameter("txtpassword");
+            request.setCharacterEncoding("UTF-8");
+            String account = request.getParameter("account");
+            String password = request.getParameter("password");
+            String lastName = request.getParameter("lastName");
+            String firstName = request.getParameter("firstName");
+            String phone = request.getParameter("phone");
+            Date birthday = Date.valueOf(request.getParameter("birthday"));
+            boolean gender = request.getParameter("gender").equals("1");
+            boolean isUse = request.getParameter("isUse").equals("1");
+            int roleInSystem = Integer.parseInt(request.getParameter("roleInSystem"));
             String message = "";
-            if (account != null && password != null) {
-                AccountDAO ad = new AccountDAO();
-                Account acc = ad.getUserLogin(account, password);
-                if (acc != null && acc.isIsUse()) {
-                    HttpSession session = request.getSession();
-                    session.setAttribute("loginedAcc", acc);
-                    url = Navigation.HOME_URL;
-                } else {
-                    message = "Account does not exist or password is wrong";
+            String url = "";
+
+            boolean isValidPhone = phone.matches("^(03|05|07|08|09)\\d{8}$");
+            
+            Account obj = new Account(account, password, lastName, firstName, birthday, gender, phone, isUse, roleInSystem);
+            AccountDAO acc = new AccountDAO();
+
+            Account checkAccount = acc.checkAcc(account);
+            if (checkAccount != null) {
+                if (!isValidPhone) {
+                    message = "Phone number must be digit and begin with 03|05|07|08|09";
                     request.setAttribute("message", message);
-                    url = Navigation.LOGIN_URL;
+                    url = Navigation.UPDATE_ACCOUNT_URL;
+                } else {
+                    int rs = acc.updatetRec(obj);
+                    if (rs >= 1) {
+                        url = "MainController?action=" + Action.ACCOUNT;
+                    } else {
+                        url = "MainController?action=" + Action.ACCOUNT;
+                    }
                 }
+            } else {
+                url = "error404.html";
             }
             request.getRequestDispatcher(url).forward(request, response);
         }

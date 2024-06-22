@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package controller.category;
 
-import dao.AccountDAO;
-import dto.Account;
+import controller.Navigation;
+import dao.CategoryDAO;
+import dto.Category;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Duy.Tran
  */
-public class DeleteAccServlet extends HttpServlet {
+public class ListCategoryServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,30 +36,11 @@ public class DeleteAccServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            request.setCharacterEncoding("UTF-8");
-            String url = "";
-            String account = request.getParameter("account");
-            String password = request.getParameter("password");
-            String lastName = request.getParameter("lastName");
-            String firstName = request.getParameter("firstName");
-            String phone = request.getParameter("phone");
-            Date birthday = Date.valueOf(request.getParameter("birthday"));
-            boolean gender = request.getParameter("gender").equals("1");
-            boolean isUse = request.getParameter("isUse").equals("1");
-            int roleInSystem = Integer.parseInt(request.getParameter("roleInSystem"));
-            Account obj = new Account(account, password, lastName, firstName, birthday, gender, phone, isUse, roleInSystem);
-            AccountDAO acc = new AccountDAO();
-
-            Account checkAccount = acc.checkAcc(account);
-            if (checkAccount != null) {
-                int rs = acc.deleteRec(obj);
-                if (rs >= 1) {
-                    url = "MainController?action=" + Action.ACCOUNT;
-                } else {
-                    url = "MainController?action=" + Action.ACCOUNT;
-                }
-            }
-            request.getRequestDispatcher(url).forward(request, response);
+            CategoryDAO categoryDAO = new CategoryDAO();
+            List<Category> categoryList = categoryDAO.listAll();
+            request.setAttribute("categoryList", categoryList);
+            
+            request.getRequestDispatcher(Navigation.CATEGORY_URL).forward(request, response);
         }
     }
 

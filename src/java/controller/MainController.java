@@ -41,27 +41,30 @@ public class MainController extends HttpServlet {
             }
             switch (action) {
                 case Action.HOME:
-                    url = Action.HOME_URL;
+                    url = Navigation.HOME_URL;
                     break;
                 case Action.PRODUCT:
-                    url = Action.PRODUCT_URL;
-                    break;
-                case Action.CATEGORIES:
-                    url = Action.CATEGORIES_URL;
+                    url = Navigation.PRODUCT_URL;
                     break;
                 case Action.CONTACT:
-                    url = Action.CONTACT_URL;
+                    url = Navigation.CONTACT_URL;
                     break;
                 case Action.ADD_NEW:
-                    url = Action.REGISTER_URL;
+                    url = Navigation.REGISTER_URL;
                     break;
                 case Action.LOGIN:
-                    url = Action.LOGIN_URL;
+                    url = Navigation.LOGIN_URL;
                     break;
-
+                case Action.ADD_CATEGORY:
+                    url = Navigation.ADD_CATEGORY_URL;
+                    break;
+                case Action.UPDATE_CATEGORY:
+                    url  = Navigation.UPDATE_CATEGORY_URL;
+                    break;
                 case Action.UPDATE:
-                    url = "LoadAccountServlet";
+                    url = Navigation.UPDATE_ACCOUNT_URL;
                     break;
+                    
                 case Action.ACCOUNT:
                     url = "ListAccountsServlet";
                     break;
@@ -80,6 +83,19 @@ public class MainController extends HttpServlet {
                 case Action.ACTIVE:
                     url = "ActiveServlet";
                     break;
+                case Action.CATEGORY:
+                    url = "ListCategoryServlet";
+                    break;
+                case Action.ADD_NEW_CATEGORY:
+                    url = "AddCategoryServlet";
+                    break;
+                case Action.EDIT_CATEGORY:
+                    url = "UpdateCategoryServlet";
+                    break;
+                case Action.DELETE_CATEGORY:
+                    url = "DeleteCategoryServlet";
+                    break;
+                    
                 default:
                     throw new AssertionError();
             }

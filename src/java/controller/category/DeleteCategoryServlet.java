@@ -3,23 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package controller.category;
 
-import dao.AccountDAO;
-import dto.Account;
+import controller.Action;
+import dao.CategoryDAO;
+import dto.Category;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Duy.Tran
  */
-public class LoginServlet extends HttpServlet {
+public class DeleteCategoryServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,22 +35,19 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            int typeId = Integer.parseInt(request.getParameter("typeId"));
+            String categoryName = request.getParameter("categoryName");
+            String memo = request.getParameter("memo");
             String url = "";
-            String account = request.getParameter("txtaccount");
-            String password = request.getParameter("txtpassword");
-            String message = "";
-            if (account != null && password != null) {
-                AccountDAO ad = new AccountDAO();
-                Account acc = ad.getUserLogin(account, password);
-                if (acc != null && acc.isIsUse()) {
-                    HttpSession session = request.getSession();
-                    session.setAttribute("loginedAcc", acc);
-                    url = Navigation.HOME_URL;
-                } else {
-                    message = "Account does not exist or password is wrong";
-                    request.setAttribute("message", message);
-                    url = Navigation.LOGIN_URL;
-                }
+            
+            Category cat = new Category(typeId, categoryName, memo);
+            CategoryDAO categoryDAO = new CategoryDAO();
+            
+            int rs = categoryDAO.deleteRec(cat);
+            if(rs >= 1) {
+                url = "MainController?action=" + Action.CATEGORY;
+            } else {
+                url = "MainController?action=" + Action.CATEGORY;
             }
             request.getRequestDispatcher(url).forward(request, response);
         }
