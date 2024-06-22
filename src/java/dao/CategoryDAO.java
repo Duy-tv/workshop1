@@ -20,7 +20,7 @@ import utils.MyLib;
  *
  * @author Duy.Tran
  */
-public class CategoryDAO implements Accessible<Category>{
+public class CategoryDAO implements Accessible<Category> {
 
     @Override
     public int insertRec(Category obj) {
@@ -52,7 +52,7 @@ public class CategoryDAO implements Accessible<Category>{
 
     @Override
     public int updatetRec(Category obj) {
-       int rs = 0;
+        int rs = 0;
         Connection cn = null;
         try {
             cn = MyLib.makeConnection();
@@ -81,7 +81,7 @@ public class CategoryDAO implements Accessible<Category>{
 
     @Override
     public int deleteRec(Category obj) {
-      int rs = 0;
+        int rs = 0;
         Connection cn = null;
         try {
             cn = MyLib.makeConnection();
@@ -108,14 +108,42 @@ public class CategoryDAO implements Accessible<Category>{
 
     @Override
     public Category getObjectById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int typeId = Integer.parseInt(id);
+        Category c = null;
+        Connection cn = null;
+        try {
+            cn = MyLib.makeConnection();
+            if (cn != null) {
+                String sql = "SELECT [typeId], [categoryName], [memo]\n"
+                        + "FROM [dbo].[categories] WHERE [typeId] = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, typeId);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null & rs.next()) {
+                    String name = rs.getString("categoryName");
+                    String memo = rs.getString("memo");
+                    c = new Category(typeId, name, memo);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return c;
     }
 
     @Override
     public List<Category> listAll() {
         ArrayList<Category> list = new ArrayList<>();
         Connection cn = null;
-        
+
         try {
             cn = MyLib.makeConnection();
             if (cn != null) {
@@ -143,10 +171,8 @@ public class CategoryDAO implements Accessible<Category>{
                 e.printStackTrace();
             }
         }
-        
+
         return list;
     }
 
-   
-    
 }

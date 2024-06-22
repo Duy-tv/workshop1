@@ -41,10 +41,7 @@ public class MainController extends HttpServlet {
             }
             switch (action) {
                 case Action.HOME:
-                    url = Navigation.HOME_URL;
-                    break;
-                case Action.PRODUCT:
-                    url = Navigation.PRODUCT_URL;
+                    url = "ListProductServlet";
                     break;
                 case Action.CONTACT:
                     url = Navigation.CONTACT_URL;
@@ -59,12 +56,12 @@ public class MainController extends HttpServlet {
                     url = Navigation.ADD_CATEGORY_URL;
                     break;
                 case Action.UPDATE_CATEGORY:
-                    url  = Navigation.UPDATE_CATEGORY_URL;
+                    url = Navigation.UPDATE_CATEGORY_URL;
                     break;
                 case Action.UPDATE:
                     url = Navigation.UPDATE_ACCOUNT_URL;
                     break;
-                    
+
                 case Action.ACCOUNT:
                     url = "ListAccountsServlet";
                     break;
@@ -95,9 +92,14 @@ public class MainController extends HttpServlet {
                 case Action.DELETE_CATEGORY:
                     url = "DeleteCategoryServlet";
                     break;
-                    
+                case Action.PRODUCT:
+                    url = "ListProductServlet";
+                    break;
+                case Action.SHOW:
+                    url = "ShowProductServlet";
+                    break;
                 default:
-                    throw new AssertionError();
+                    break;
             }
             request.getRequestDispatcher(url).forward(request, response);
         }

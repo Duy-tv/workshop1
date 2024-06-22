@@ -48,6 +48,14 @@
         <servlet-name>DeleteCategoryServlet</servlet-name>
         <servlet-class>controller.category.DeleteCategoryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListProductServlet</servlet-name>
+        <servlet-class>controller.product.ListProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowProductServlet</servlet-name>
+        <servlet-class>controller.product.ShowProductServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -96,13 +104,21 @@
         <servlet-name>DeleteCategoryServlet</servlet-name>
         <url-pattern>/DeleteCategoryServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListProductServlet</servlet-name>
+        <url-pattern>/ListProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowProductServlet</servlet-name>
+        <url-pattern>/ShowProductServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>ListProductServlet</welcome-file>
     </welcome-file-list>
     <error-page>
         <error-code>404</error-code>

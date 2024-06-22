@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -152,7 +153,41 @@ public class AccountDAO implements Accessible<Account> {
 
     @Override
     public Account getObjectById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Account acc = null;
+        Connection cn = null;
+        try {
+            if (cn != null) {
+                String sql = "SELECT [account], [pass], [lastName], [firstName],\n"
+                        + "[birthday], [gender], [phone], [isUse], [roleInSystem]\n"
+                        + "FROM [dbo].[accounts]\n"
+                        + "WHERE [account] = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, id);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
+                    String pass = rs.getString("pass");
+                    String lastName = rs.getString("lastName");
+                    String firstName = rs.getString("firstName");
+                    Date birthday = rs.getDate("birthday");
+                    boolean gender = rs.getBoolean("gender");
+                    String phone = rs.getString("phone");
+                    boolean isUse = rs.getBoolean("isUse");
+                    int roleInSystem = rs.getInt("roleInSystem");
+                    acc = new Account(id, pass, lastName, firstName, birthday, gender, phone, isUse, roleInSystem);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return acc;
     }
 
     @Override

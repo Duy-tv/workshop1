@@ -118,6 +118,7 @@ public class Product {
     public void setDiscount(int discount) {
         this.discount = discount;
     }
+
     
     
 }

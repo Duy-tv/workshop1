@@ -29,6 +29,7 @@ public interface Action {
     public final String ADD_CATEGORY = "addCat";
     public final String ADD_NEW_CATEGORY = "addNewCat";
     public final String EDIT_CATEGORY = "editCategory";
+    public final String SHOW = "show";
     
     
 }
