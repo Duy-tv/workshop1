@@ -76,7 +76,7 @@
                         <input class="input-style" type="number"  name="discount" id="discount" placeholder="Enter discount" required="" value="${param.discount}"/>
                     </div>
 
-                    <button type="submit" class="button-style" name="action" value="<%= Action.EDIT_PRODUCT%>">Add</button>
+                    <button type="submit" class="button-style" name="action" value="<%= Action.EDIT_PRODUCT%>">Update</button>
                 </form>
             </div>
         </div>

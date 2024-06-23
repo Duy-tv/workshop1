@@ -2,18 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/web/product.jsp</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/controller/MainController.java</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/controller/category/AddCategoryServlet.java</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/web/register.jsp</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/dao/CategoryDAO.java</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/controller/product/DeleteProductServlet.java</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/utils/MyLib.java</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/controller/product/AddProductServlet.java</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/dao/ProductDAO.java</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/web/addProduct.jsp</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/controller/category/ListCategoryServlet.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
