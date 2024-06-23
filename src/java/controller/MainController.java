@@ -107,6 +107,12 @@ public class MainController extends HttpServlet {
                 case Action.ADD_NEW_PRODUCT:
                     url = "AddProductServlet";
                     break;
+                case Action.UPDATE_PRODUCT:
+                    url = "ListCategoryServlet";
+                    break;
+                case Action.EDIT_PRODUCT:
+                    url = "UpdateProductServlet";
+                    break;
                 default:
                     break;
             }

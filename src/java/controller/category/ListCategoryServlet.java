@@ -44,12 +44,18 @@ public class ListCategoryServlet extends HttpServlet {
             List<Category> categoryList = categoryDAO.listAll();
             request.setAttribute("categoryList", categoryList);
             String url = "";
-            if (action.equals(Action.ADD_PRODUCT)) {
-                HttpSession session = request.getSession();
-                session.setAttribute("selectedTypeId", typeId);
+            HttpSession session = request.getSession();
+            session.setAttribute("selectedTypeId", typeId);
+            if(session.getAttribute("loginedAcc") == null) {
+                url = Navigation.LOGIN_URL;
+            } else {
+                if (action.equals(Action.ADD_PRODUCT)) {
                 url = Navigation.ADD_PRODUCT_URL;
+            } else if (action.equals(Action.UPDATE_PRODUCT)) {
+                url = Navigation.UPDATE_PRODUCT_URL;
             } else {
                 url = Navigation.CATEGORY_URL;
+            }
             }
 
             request.getRequestDispatcher(url).forward(request, response);

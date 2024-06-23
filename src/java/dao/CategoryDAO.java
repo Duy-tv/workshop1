@@ -23,8 +23,8 @@ import utils.MyLib;
  * @author Duy.Tran
  */
 public class CategoryDAO implements Accessible<Category> {
-    
- private Connection connection;
+
+    private Connection connection;
     private ServletContext sc;
 
     public CategoryDAO() {
@@ -44,26 +44,24 @@ public class CategoryDAO implements Accessible<Category> {
         }
         return connection;
     }
-    
-    
+
     @Override
     public int insertRec(Category obj) {
         int rs = 0;
         try {
             getConnect();
-                String sql = "insert into [dbo].[categories]([categoryName],[memo]) values(?,?)";
-                PreparedStatement pst = getConnect().prepareStatement(sql);
-                pst.setString(1, obj.getCategoryName());
-                pst.setString(2, obj.getMemo());
-                rs = pst.executeUpdate();
-            
+            String sql = "insert into [dbo].[categories]([categoryName],[memo]) values(?,?)";
+            PreparedStatement pst = getConnect().prepareStatement(sql);
+            pst.setString(1, obj.getCategoryName());
+            pst.setString(2, obj.getMemo());
+            rs = pst.executeUpdate();
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
                 getConnect().close();
-                
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -76,20 +74,19 @@ public class CategoryDAO implements Accessible<Category> {
         int rs = 0;
         try {
             getConnect();
-                String sql = "update [dbo].[categories] set [categoryName] = ?, [memo] = ? where [typeId] = ?";
-                PreparedStatement pst = getConnect().prepareStatement(sql);
-                pst.setString(1, obj.getCategoryName());
-                pst.setString(2, obj.getMemo());
-                pst.setInt(3, obj.getTypeId());
-                rs = pst.executeUpdate();
-            
+            String sql = "update [dbo].[categories] set [categoryName] = ?, [memo] = ? where [typeId] = ?";
+            PreparedStatement pst = getConnect().prepareStatement(sql);
+            pst.setString(1, obj.getCategoryName());
+            pst.setString(2, obj.getMemo());
+            pst.setInt(3, obj.getTypeId());
+            rs = pst.executeUpdate();
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
                 getConnect().close();
-                
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -102,18 +99,17 @@ public class CategoryDAO implements Accessible<Category> {
         int rs = 0;
         try {
             getConnect();
-                String sql = "delete from [dbo].[categories] where [typeId] = ?";
-                PreparedStatement pst = getConnect().prepareStatement(sql);
-                pst.setInt(1, obj.getTypeId());
-                rs = pst.executeUpdate();
-            
+            String sql = "delete from [dbo].[categories] where [typeId] = ?";
+            PreparedStatement pst = getConnect().prepareStatement(sql);
+            pst.setInt(1, obj.getTypeId());
+            rs = pst.executeUpdate();
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-               getConnect().close();
-                
+                getConnect().close();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -127,23 +123,23 @@ public class CategoryDAO implements Accessible<Category> {
         Category c = null;
         try {
             getConnect();
-                String sql = "SELECT [typeId], [categoryName], [memo]\n"
-                        + "FROM [dbo].[categories] WHERE [typeId] = ?";
-                PreparedStatement pst = getConnect().prepareStatement(sql);
-                pst.setInt(1, typeId);
-                ResultSet rs = pst.executeQuery();
-                if (rs != null & rs.next()) {
-                    String name = rs.getString("categoryName");
-                    String memo = rs.getString("memo");
-                    c = new Category(typeId, name, memo);
-                
+            String sql = "SELECT [typeId], [categoryName], [memo]\n"
+                    + "FROM [dbo].[categories] WHERE [typeId] = ?";
+            PreparedStatement pst = getConnect().prepareStatement(sql);
+            pst.setInt(1, typeId);
+            ResultSet rs = pst.executeQuery();
+            if (rs != null & rs.next()) {
+                String name = rs.getString("categoryName");
+                String memo = rs.getString("memo");
+                c = new Category(typeId, name, memo);
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
                 getConnect().close();
-                
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -157,25 +153,25 @@ public class CategoryDAO implements Accessible<Category> {
 
         try {
             getConnect();
-                String sql = "select [typeId],[categoryName],[memo] from categories";
-                Statement st = getConnect().createStatement();
-                ResultSet rs = st.executeQuery(sql);
-                if (rs != null) {
-                    while (rs.next()) {
-                        int typeId = rs.getInt("typeId");
-                        String categoryName = rs.getString("categoryName");
-                        String memo = rs.getString("memo");
-                        Category cat = new Category(typeId, categoryName, memo);
-                        list.add(cat);
-                    
+            String sql = "select [typeId],[categoryName],[memo] from categories";
+            Statement st = getConnect().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if (rs != null) {
+                while (rs.next()) {
+                    int typeId = rs.getInt("typeId");
+                    String categoryName = rs.getString("categoryName");
+                    String memo = rs.getString("memo");
+                    Category cat = new Category(typeId, categoryName, memo);
+                    list.add(cat);
+
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-               getConnect().close();
-                
+                getConnect().close();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

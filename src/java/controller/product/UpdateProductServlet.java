@@ -5,8 +5,16 @@
  */
 package controller.product;
 
+import controller.Action;
+import dao.AccountDAO;
+import dao.CategoryDAO;
+import dao.ProductDAO;
+import dto.Account;
+import dto.Category;
+import dto.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +25,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author Duy.Tran
  */
 public class UpdateProductServlet extends HttpServlet {
+
+    private static final String UPLOAD = "/images/sanPham";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,15 +42,32 @@ public class UpdateProductServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UpdateProductServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UpdateProductServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            String productId = request.getParameter("productId");
+            String productName = request.getParameter("productName");
+            String productImage = request.getParameter("productImage");
+            String brief = request.getParameter("brief");
+            Date postedDate = Date.valueOf(request.getParameter("postedDate"));
+            String unit = request.getParameter("unit");
+            String typeId = request.getParameter("typeId");
+            CategoryDAO cd = new CategoryDAO();
+            Category c = cd.getObjectById(String.valueOf(typeId));
+            String acc = request.getParameter("account");
+            AccountDAO ad = new AccountDAO();
+            Account account = ad.getObjectById(acc);
+            int price = Integer.parseInt(request.getParameter("price"));
+            int discount = Integer.parseInt(request.getParameter("discount"));
+            String imgUrl = UPLOAD + "/" + productImage;
+            String url = "";
+            ProductDAO productDAO = new ProductDAO();
+            Product pro = new Product(productId, productName, imgUrl, brief, postedDate, c, account, unit, price, discount);
+            
+            int rs = productDAO.updatetRec(pro);
+            if(rs >= 1) {
+              url = "MainController?action=" + Action.PRODUCT;
+          } else {
+              url = "MainController?action=" + Action.PRODUCT;
+          }
+          request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

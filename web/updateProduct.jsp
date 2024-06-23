@@ -1,6 +1,6 @@
 <%-- 
-    Document   : addNewProduct
-    Created on : Jun 23, 2024, 11:36:12 AM
+    Document   : updateProduct
+    Created on : Jun 23, 2024, 8:12:15 PM
     Author     : Duy.Tran
 --%>
 
@@ -21,7 +21,7 @@
                     <div class="div-style">
                         <label for="productId" class="label-style">Product Id</label>
                         <p class="text-red-600">${message}</p>
-                        <input class="input-style" type="text" id="productId" name="productId" placeholder="Enter product Id" required="" value="${param.productId}"/>
+                        <input class="input-style cursor-not-allowed bg-gray-100" type="text" id="productId" name="productId" placeholder="Enter product Id" readonly="" value="${param.productId}"/>
                     </div>
                     <div class="div-style">
                         <label for="productName" class="label-style">Product Name</label>
@@ -63,7 +63,7 @@
                         <input class="input-style" type="number"  name="discount" id="discount" placeholder="Enter discount" required="" value="${param.discount}"/>
                     </div>
 
-                    <button type="submit" class="button-style" name="action" value="<%= Action.ADD_NEW_PRODUCT%>">Add</button>
+                    <button type="submit" class="button-style" name="action" value="<%= Action.EDIT_PRODUCT%>">Add</button>
                 </form>
             </div>
         </div>

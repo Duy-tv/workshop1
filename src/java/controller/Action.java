@@ -34,6 +34,6 @@ public interface Action {
     public final String DELETE_PRODUCT = "deletePro";
     public final String UPDATE_PRODUCT = "updatePro";
     public final String ADD_NEW_PRODUCT = "addNewProduct";
-    
+    public final String EDIT_PRODUCT = "editProduct";
     
 }

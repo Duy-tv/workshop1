@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Duy.Tran
  */
 public class AddProductServlet extends HttpServlet {
-     private static final String UPLOAD = "/images/sanPham";
+    private static final String UPLOAD = "/images/sanPham";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
