@@ -141,6 +141,33 @@
             30
         </session-timeout>
     </session-config>
+    
+    <context-param>
+        <param-name>IP</param-name>
+        <param-value>localhost</param-value>
+    </context-param>
+    <context-param>
+        <param-name>instanceName</param-name>
+        <param-value>DESKTOP-1EAPPVM\\SQLEXPRESS</param-value>
+    </context-param>
+    <context-param>
+        <param-name>port</param-name>
+        <param-value>1433</param-value>
+    </context-param>
+    <context-param>
+        <param-name>db</param-name>
+        <param-value>ProductIntro</param-value>
+    </context-param>
+    <context-param>
+        <param-name>uid</param-name>
+        <param-value>sa</param-value>
+    </context-param>
+    <context-param>
+        <param-name>pwd</param-name>
+        <param-value>12345</param-value>
+    </context-param>
+    
+    
     <welcome-file-list>
         <welcome-file>ListProductServlet</welcome-file>
     </welcome-file-list>

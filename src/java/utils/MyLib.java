@@ -7,25 +7,51 @@ package utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import javax.servlet.ServletContext;
 
 /**
  *
  * @author user
  */
 public class MyLib {
-     public static Connection makeConnection() throws Exception{
-        Connection cn=null;
-        String IP="localhost";
-        String instanceName="DESKTOP-1EAPPVM\\SQLEXPRESS";
-        String port="1433";
-        String uid="sa";
-        String pwd="12345";
-        String db="ProductIntro";
-        String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
-        String url="jdbc:sqlserver://" +IP+"\\"+ instanceName+":"+port
-                 +";databasename="+db+";user="+uid+";password="+pwd;
+
+    private String IP;
+    private String instanceName;
+    private String port;
+    private String db;
+    private String uid;
+    private String pwd;
+
+    public MyLib() {
+        this.IP = "localhost";
+        this.instanceName = "DESKTOP-1EAPPVM\\SQLEXPRESS";
+        this.port = "1433";
+        this.uid = "sa";
+        this.pwd = "12345";
+        this.db = "ProductIntro";
+    }
+
+    public MyLib(ServletContext sc) {
+        this.IP = sc.getInitParameter("hostName");
+        this.instanceName = sc.getInitParameter("instance");
+        this.port = sc.getInitParameter("port");
+        this.db = sc.getInitParameter("dbName");
+        this.uid = sc.getInitParameter("userName");
+        this.pwd = sc.getInitParameter("passWord");
+    }
+    
+    private String urlString() {
+        return String.format( "jdbc:sqlserver://" + this.IP + "\\" + this.instanceName + ":" + this.port
+            + ";databasename=" + this.db + ";user=" + this.uid + ";password=" + this.pwd);
+        
+    }
+
+    public Connection makeConnection() throws Exception {
+        Connection cn = null;
+        String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
         Class.forName(driver);
-        cn=DriverManager.getConnection(url);
+        cn = DriverManager.getConnection(urlString());
         return cn;
     }
+
 }

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import utils.MyLib;
 
 /**
@@ -24,15 +25,34 @@ import utils.MyLib;
  */
 public class AccountDAO implements Accessible<Account> {
 
+    private Connection connection;
+    private ServletContext sc;
+
+    public AccountDAO() {
+    }
+
+    public AccountDAO(ServletContext sc) {
+        this.sc = sc;
+    }
+
+    private Connection getConnect() throws ClassNotFoundException, SQLException, Exception {
+        if (sc == null) {
+            MyLib myLib = new MyLib();
+            connection = myLib.makeConnection();
+        } else {
+            MyLib myLib = new MyLib(sc);
+            connection = myLib.makeConnection();
+        }
+        return connection;
+    }
+
     @Override
     public int insertRec(Account obj) {
         int rs = 0;
-        Connection cn = null;
         try {
-            cn = MyLib.makeConnection();
-            if (cn != null) {
+            getConnect();
                 String sql = "insert into dbo.Accounts(account,pass,lastName,firstName,birthday,gender,phone,isUse,roleInSystem) values(?,?,?,?,?,?,?,?,?)";
-                PreparedStatement pst = cn.prepareStatement(sql);
+                PreparedStatement pst = getConnect().prepareStatement(sql);
                 pst.setString(1, obj.getAccount());
                 pst.setString(2, obj.getPass());
                 pst.setNString(3, obj.getLastName());
@@ -43,15 +63,13 @@ public class AccountDAO implements Accessible<Account> {
                 pst.setBoolean(8, obj.isIsUse());
                 pst.setInt(9, obj.getRoleInSystem());
                 rs = pst.executeUpdate();
-            }
+            
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (cn != null) {
-                    cn.close();
-                }
+                getConnect().close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -62,13 +80,11 @@ public class AccountDAO implements Accessible<Account> {
     @Override
     public int updatetRec(Account obj) {
         int rs = 0;
-        Connection cn = null;
         PreparedStatement pst = null;
         try {
-            cn = MyLib.makeConnection();
-            if (cn != null) {
+            getConnect();
                 String sql = "update [dbo].[accounts] set [account] = ?, [pass] = ?, [lastName] = ?, [firstName] = ?, [birthday] = ?, [gender] = ?, [phone] = ?, [isUse] = ?, [roleInSystem] = ? where [account] = ?";
-                pst = cn.prepareStatement(sql);
+                pst = getConnect().prepareStatement(sql);
                 pst.setString(1, obj.getAccount());
                 pst.setString(2, obj.getPass());
                 pst.setNString(3, obj.getLastName());
@@ -80,15 +96,13 @@ public class AccountDAO implements Accessible<Account> {
                 pst.setInt(9, obj.getRoleInSystem());
                 pst.setString(10, obj.getAccount());
                 rs = pst.executeUpdate();
-            }
+            
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (cn != null) {
-                    cn.close();
-                }
+                getConnect().close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -98,25 +112,21 @@ public class AccountDAO implements Accessible<Account> {
 
     public int updateStatus(String account, boolean isUse) {
         int rs = 0;
-        Connection cn = null;
         PreparedStatement pst = null;
         try {
-            cn = MyLib.makeConnection();
-            if (cn != null) {
+           getConnect();
                 String sql = "update [dbo].[accounts] set [isUse] = ? where [account] = ?";
-                pst = cn.prepareStatement(sql);
+                pst = getConnect().prepareStatement(sql);
                 pst.setBoolean(1, isUse);
                 pst.setString(2, account);
                 rs = pst.executeUpdate();
-            }
+            
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (cn != null) {
-                    cn.close();
-                }
+                getConnect().close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -128,23 +138,19 @@ public class AccountDAO implements Accessible<Account> {
     @Override
     public int deleteRec(Account obj) {
         int rs = 0;
-        Connection cn = null;
         try {
-            cn = MyLib.makeConnection();
-            if (cn != null) {
+           getConnect();
                 String sql = "delete from [dbo].[accounts] where [account] = ?";
-                PreparedStatement pst = cn.prepareStatement(sql);
+                PreparedStatement pst = getConnect().prepareStatement(sql);
                 pst.setString(1, obj.getAccount());
                 rs = pst.executeUpdate();
-            }
+            
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (cn != null) {
-                    cn.close();
-                }
+               getConnect().close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -156,15 +162,13 @@ public class AccountDAO implements Accessible<Account> {
     @Override
     public Account getObjectById(String id) {
         Account acc = null;
-        Connection cn = null;
         try {
-            cn = MyLib.makeConnection();
-            if (cn != null) {
+            getConnect();
                 String sql = "SELECT [account], [pass], [lastName], [firstName],\n"
                         + "[birthday], [gender], [phone], [isUse], [roleInSystem]\n"
                         + "FROM [dbo].[accounts]\n"
                         + "WHERE [account] = ?";
-                PreparedStatement pst = cn.prepareStatement(sql);
+                PreparedStatement pst = getConnect().prepareStatement(sql);
                 pst.setString(1, id);
                 ResultSet rs = pst.executeQuery();
                 if (rs != null && rs.next()) {
@@ -178,14 +182,12 @@ public class AccountDAO implements Accessible<Account> {
                     int roleInSystem = rs.getInt("roleInSystem");
                     acc = new Account(id, pass, lastName, firstName, birthday, gender, phone, isUse, roleInSystem);
                 }
-            }
+            
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (cn != null) {
-                    cn.close();
-                }
+               getConnect().close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -196,14 +198,12 @@ public class AccountDAO implements Accessible<Account> {
     @Override
     public List<Account> listAll() {
         List<Account> list = new ArrayList<>();
-        Connection cn = null;
         try {
-            cn = MyLib.makeConnection();
-            if (cn != null) {
+            getConnect();
                 String sql = "select account, pass, lastName, firstName, \n"
                         + "birthday, gender, phone, isUse, roleInSystem \n"
                         + "from accounts";
-                Statement st = cn.createStatement();
+                Statement st = getConnect().createStatement();
                 ResultSet rs = st.executeQuery(sql);
                 if (rs != null) {
                     while (rs.next()) {
@@ -220,14 +220,12 @@ public class AccountDAO implements Accessible<Account> {
                         list.add(acc);
                     }
                 }
-            }
+            
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (cn != null) {
-                    cn.close();
-                }
+              getConnect().close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -238,12 +236,10 @@ public class AccountDAO implements Accessible<Account> {
 
     public Account getUserLogin(String account, String password) {
         Account acc = null;
-        Connection cn = null;
         try {
-            cn = MyLib.makeConnection();
-            if (cn != null) {
+            getConnect();
                 String sql = "select [account],[pass],[lastName],[firstName],[birthday],[gender],[phone],[isUse],[roleInSystem] from [dbo].[accounts] where account = ? and pass = ? COLLATE SQL_Latin1_General_CP1_CS_AS";
-                PreparedStatement pst = cn.prepareStatement(sql);
+                PreparedStatement pst = getConnect().prepareStatement(sql);
                 pst.setString(1, account);
                 pst.setString(2, password);
                 ResultSet rs = pst.executeQuery();
@@ -257,15 +253,13 @@ public class AccountDAO implements Accessible<Account> {
                     int roleInSystem = rs.getInt("roleInSystem");
                     acc = new Account(account, password, lastName, firstName, birthday, gender, phone, isUse, roleInSystem);
                 }
-            }
+            
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (cn != null) {
-                    cn.close();
-                }
+               getConnect().close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -275,12 +269,10 @@ public class AccountDAO implements Accessible<Account> {
 
     public Account checkAcc(String account) {
         Account acc = null;
-        Connection cn = null;
         try {
-            cn = MyLib.makeConnection();
-            if (cn != null) {
+            getConnect();
                 String sql = "select [account],[pass],[lastName],[firstName],[birthday],[gender],[phone],[isUse],[roleInSystem] from [dbo].[accounts] where account = ?";
-                PreparedStatement pst = cn.prepareStatement(sql);
+                PreparedStatement pst = getConnect().prepareStatement(sql);
                 pst.setString(1, account);
                 ResultSet rs = pst.executeQuery();
                 if (rs != null && rs.next()) {
@@ -293,16 +285,14 @@ public class AccountDAO implements Accessible<Account> {
                     boolean isUse = rs.getBoolean("isUse");
                     int roleInSystem = rs.getInt("roleInSystem");
                     acc = new Account(account, password, lastName, firstName, birthday, gender, phone, isUse, roleInSystem);
-                }
+                
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (cn != null) {
-                    cn.close();
-                }
+                getConnect().close();
             } catch (Exception e) {
                 e.printStackTrace();
             }

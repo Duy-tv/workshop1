@@ -11,9 +11,11 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.ServletContext;
 import utils.MyLib;
 
 /**
@@ -21,28 +23,47 @@ import utils.MyLib;
  * @author Duy.Tran
  */
 public class CategoryDAO implements Accessible<Category> {
+    
+ private Connection connection;
+    private ServletContext sc;
 
+    public CategoryDAO() {
+    }
+
+    public CategoryDAO(ServletContext sc) {
+        this.sc = sc;
+    }
+
+    private Connection getConnect() throws ClassNotFoundException, SQLException, Exception {
+        if (sc == null) {
+            MyLib myLib = new MyLib();
+            connection = myLib.makeConnection();
+        } else {
+            MyLib myLib = new MyLib(sc);
+            connection = myLib.makeConnection();
+        }
+        return connection;
+    }
+    
+    
     @Override
     public int insertRec(Category obj) {
         int rs = 0;
-        Connection cn = null;
         try {
-            cn = MyLib.makeConnection();
-            if (cn != null) {
+            getConnect();
                 String sql = "insert into [dbo].[categories]([categoryName],[memo]) values(?,?)";
-                PreparedStatement pst = cn.prepareStatement(sql);
+                PreparedStatement pst = getConnect().prepareStatement(sql);
                 pst.setString(1, obj.getCategoryName());
                 pst.setString(2, obj.getMemo());
                 rs = pst.executeUpdate();
-            }
+            
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (cn != null) {
-                    cn.close();
-                }
+                getConnect().close();
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -53,25 +74,22 @@ public class CategoryDAO implements Accessible<Category> {
     @Override
     public int updatetRec(Category obj) {
         int rs = 0;
-        Connection cn = null;
         try {
-            cn = MyLib.makeConnection();
-            if (cn != null) {
+            getConnect();
                 String sql = "update [dbo].[categories] set [categoryName] = ?, [memo] = ? where [typeId] = ?";
-                PreparedStatement pst = cn.prepareStatement(sql);
+                PreparedStatement pst = getConnect().prepareStatement(sql);
                 pst.setString(1, obj.getCategoryName());
                 pst.setString(2, obj.getMemo());
                 pst.setInt(3, obj.getTypeId());
                 rs = pst.executeUpdate();
-            }
+            
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (cn != null) {
-                    cn.close();
-                }
+                getConnect().close();
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -82,23 +100,20 @@ public class CategoryDAO implements Accessible<Category> {
     @Override
     public int deleteRec(Category obj) {
         int rs = 0;
-        Connection cn = null;
         try {
-            cn = MyLib.makeConnection();
-            if (cn != null) {
+            getConnect();
                 String sql = "delete from [dbo].[categories] where [typeId] = ?";
-                PreparedStatement pst = cn.prepareStatement(sql);
+                PreparedStatement pst = getConnect().prepareStatement(sql);
                 pst.setInt(1, obj.getTypeId());
                 rs = pst.executeUpdate();
-            }
+            
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (cn != null) {
-                    cn.close();
-                }
+               getConnect().close();
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -110,28 +125,25 @@ public class CategoryDAO implements Accessible<Category> {
     public Category getObjectById(String id) {
         int typeId = Integer.parseInt(id);
         Category c = null;
-        Connection cn = null;
         try {
-            cn = MyLib.makeConnection();
-            if (cn != null) {
+            getConnect();
                 String sql = "SELECT [typeId], [categoryName], [memo]\n"
                         + "FROM [dbo].[categories] WHERE [typeId] = ?";
-                PreparedStatement pst = cn.prepareStatement(sql);
+                PreparedStatement pst = getConnect().prepareStatement(sql);
                 pst.setInt(1, typeId);
                 ResultSet rs = pst.executeQuery();
                 if (rs != null & rs.next()) {
                     String name = rs.getString("categoryName");
                     String memo = rs.getString("memo");
                     c = new Category(typeId, name, memo);
-                }
+                
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (cn != null) {
-                    cn.close();
-                }
+                getConnect().close();
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -142,13 +154,11 @@ public class CategoryDAO implements Accessible<Category> {
     @Override
     public List<Category> listAll() {
         ArrayList<Category> list = new ArrayList<>();
-        Connection cn = null;
 
         try {
-            cn = MyLib.makeConnection();
-            if (cn != null) {
+            getConnect();
                 String sql = "select [typeId],[categoryName],[memo] from categories";
-                Statement st = cn.createStatement();
+                Statement st = getConnect().createStatement();
                 ResultSet rs = st.executeQuery(sql);
                 if (rs != null) {
                     while (rs.next()) {
@@ -157,16 +167,15 @@ public class CategoryDAO implements Accessible<Category> {
                         String memo = rs.getString("memo");
                         Category cat = new Category(typeId, categoryName, memo);
                         list.add(cat);
-                    }
+                    
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (cn != null) {
-                    cn.close();
-                }
+               getConnect().close();
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }

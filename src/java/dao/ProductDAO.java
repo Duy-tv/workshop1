@@ -12,9 +12,11 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.ServletContext;
 import utils.MyLib;
 
 /**
@@ -23,15 +25,35 @@ import utils.MyLib;
  */
 public class ProductDAO implements Accessible<Product> {
 
+    private Connection connection;
+    private ServletContext sc;
+
+    public ProductDAO() {
+    }
+
+    public ProductDAO(ServletContext sc) {
+        this.sc = sc;
+    }
+
+    private Connection getConnect() throws ClassNotFoundException, SQLException, Exception {
+        if (sc == null) {
+            MyLib myLib = new MyLib();
+            connection = myLib.makeConnection();
+        } else {
+            MyLib myLib = new MyLib(sc);
+            connection = myLib.makeConnection();
+        }
+        return connection;
+    }
+    
+    
     @Override
     public int insertRec(Product obj) {
         int rs = 0;
-        Connection cn = null;
         try {
-            cn = MyLib.makeConnection();
-            if (cn != null) {
+            getConnect();
                 String sql = "insert into [dbo].[products]([productId],[productName],[productImage],[brief],[postedDate],[typeId],[account],[unit],[price],[discount]) values(?,?,?,?,?,?,?,?,?,?)";
-                PreparedStatement pst = cn.prepareStatement(sql);
+                PreparedStatement pst = getConnect().prepareStatement(sql);
                 pst.setString(1, obj.getProductId());
                 pst.setString(2, obj.getProductName());
                 pst.setString(3, obj.getProductImage());
@@ -43,15 +65,14 @@ public class ProductDAO implements Accessible<Product> {
                 pst.setInt(9, obj.getPrice());
                 pst.setInt(10, obj.getDiscount());
                 rs = pst.executeUpdate();
-            }
+            
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (cn != null) {
-                    cn.close();
-                }
+               getConnect().close();
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -67,23 +88,20 @@ public class ProductDAO implements Accessible<Product> {
     @Override
     public int deleteRec(Product obj) {
        int rs = 0;
-        Connection cn = null;
         try {
-            cn = MyLib.makeConnection();
-            if (cn != null) {
+            getConnect();
                 String sql = "delete from [dbo].[products] where [productId] = ?";
-                PreparedStatement pst = cn.prepareStatement(sql);
+                PreparedStatement pst = getConnect().prepareStatement(sql);
                 pst.setString(1, obj.getProductId());
                 rs = pst.executeUpdate();
-            }
+            
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (cn != null) {
-                    cn.close();
-                }
+               getConnect().close();
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -94,15 +112,13 @@ public class ProductDAO implements Accessible<Product> {
     @Override
     public Product getObjectById(String id) {
         Product pro = null;
-        Connection cn = null;
         try {
-            cn = MyLib.makeConnection();
-            if (cn != null) {
+            getConnect();
                 String sql = "SELECT [productId], [productName], [productImage],\n"
                         + "[brief], [postedDate], [typeId], [account], [unit],\n"
                         + "[price], [discount]\n"
                         + "FROM [dbo].[products] WHERE productId = ?";
-                PreparedStatement pst = cn.prepareStatement(sql);
+                PreparedStatement pst = getConnect().prepareStatement(sql);
                 pst.setString(1, id);
                 ResultSet rs = pst.executeQuery();
                 if (rs != null && rs.next()) {
@@ -120,15 +136,14 @@ public class ProductDAO implements Accessible<Product> {
                         int price = rs.getInt("price");
                         int discount = rs.getInt("discount");
                     pro = new Product(id, productName, productImage, brief, postedDate, c, account, unit, price, discount);
-                }
+                
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (cn != null) {
-                    cn.close();
-                }
+               getConnect().close();
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -139,13 +154,11 @@ public class ProductDAO implements Accessible<Product> {
     @Override
     public List<Product> listAll() {
         ArrayList<Product> list = new ArrayList<>();
-        Connection cn = null;
 
         try {
-            cn = MyLib.makeConnection();
-            if (cn != null) {
+            getConnect();
                 String sql = "select [productId],[productName],[productImage],[brief],[postedDate],[typeId],[account],[unit],[price],[discount] from [dbo].[products]";
-                Statement st = cn.createStatement();
+                Statement st = getConnect().createStatement();
                 ResultSet rs = st.executeQuery(sql);
                 if (rs != null) {
                     while (rs.next()) {
@@ -166,15 +179,14 @@ public class ProductDAO implements Accessible<Product> {
                         Product pro = new Product(productId, productName, productImage, brief, postedDate, c, account, unit, price, discount);
                         list.add(pro);
                     }
-                }
+                
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (cn != null) {
-                    cn.close();
-                }
+               getConnect().close();
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }
