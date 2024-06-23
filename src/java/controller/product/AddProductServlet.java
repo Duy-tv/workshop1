@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Duy.Tran
  */
 public class AddProductServlet extends HttpServlet {
-
+     private static final String UPLOAD = "/images/sanPham";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -56,10 +56,11 @@ public class AddProductServlet extends HttpServlet {
             Account account = ad.getObjectById(acc);
             int price = Integer.parseInt(request.getParameter("price"));
             int discount = Integer.parseInt(request.getParameter("discount"));
+            String imgUrl = UPLOAD + "/" + productImage;
             String url = "";
             String message = "";
             ProductDAO productDAO = new ProductDAO();
-            Product pro = new Product(productId, productName, productImage, brief, postedDate, c, account, unit, price, discount);
+            Product pro = new Product(productId, productName, imgUrl, brief, postedDate, c, account, unit, price, discount);
             Product checkId = productDAO.getObjectById(productId);
 
             if (checkId != null || productId.length() > 10) {
