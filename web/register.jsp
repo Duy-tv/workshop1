@@ -2,6 +2,20 @@
     Document   : Register
     Created on : Jun 16, 2024, 4:40:18 PM
     Author     : Duy.Tran
+    
+    Description:
+    This JSP file provides a form for registering a new account in the system. It includes fields for account details such as account name, password, last name, first name, phone number, birth date, gender, role in the system, and account status (active or inactive).
+    The form submits data to 'MainController' for processing.
+    Error messages related to account and phone number are displayed if validation fails.
+    
+    Dependencies:
+    - Includes 'includes/Header.jsp' for the header section of the page.
+    - Uses 'styles/addNew.css' for styling the form.
+    
+    Note:
+    - Each input field is required and includes placeholders and initial values based on '${param.*}' variables.
+    - Radio buttons and select options are dynamically selected based on '${param.*}' values.
+    - Submit button triggers registration action ('Action.REGISTER') on form submission.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

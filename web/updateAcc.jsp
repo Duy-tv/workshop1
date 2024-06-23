@@ -2,6 +2,20 @@
     Document   : UpdateAcc
     Created on : Jun 18, 2024, 8:32:16 PM
     Author     : Duy.Tran
+    
+    Description:
+    This JSP file allows administrators or staff to update account information. It includes fields such as account details (displayed but not editable), password, last name, first name, phone number, birthday, gender, role in the system, and account status.
+    Users can update the account information by modifying the respective fields and submitting the form.
+    
+    Dependencies:
+    - Includes 'includes/Header.jsp' for the header section of the page.
+    
+    Note:
+    - The account details such as account ID are displayed but not editable ('readonly').
+    - Errors related to phone number input validation are displayed using '${message}'.
+    - Radio buttons for gender and account status ('Active') are pre-selected based on the 'param' values.
+    - Users can select between 'Administrator' and 'Staff' roles from a dropdown list.
+    - The form action is handled by 'MainController' and identifies the action as '${Action.UPDATE_ACC}'.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

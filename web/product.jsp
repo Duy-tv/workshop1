@@ -2,7 +2,22 @@
     Document   : product
     Created on : Jun 21, 2024, 4:22:55 PM
     Author     : Duy.Tran
+    
+    Description:
+    This JSP file displays a table listing products in the system. It includes columns for product details such as ID, name, image, date posted, type ID, account, unit, price, discount, and action buttons for updating and deleting products.
+    The page includes the 'Header.jsp' file for consistent navigation and styling across pages.
+    Each product row includes hidden input fields containing product details for updating or deleting operations.
+    The form at the bottom allows adding a new product by submitting data to 'MainController'.
+    
+    Dependencies:
+    - Includes 'includes/Header.jsp' for the header section of the page.
+    - Uses 'styles/productTable.css' for styling the product table.
+    
+    Note:
+    - The table iterates over ${productList} to dynamically generate rows based on available products.
+    - Action buttons are implemented using form submissions with hidden inputs to pass product details and actions to 'MainController'.
 --%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="includes/Header.jsp" %>

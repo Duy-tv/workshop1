@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * DeleteProductServlet.java
+ * 
+ * Servlet responsible for deleting products from the application.
  */
 package controller.product;
 

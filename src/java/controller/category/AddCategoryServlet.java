@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * AddCategoryServlet.java
+ * 
+ * Servlet responsible for handling category addition requests.
  */
 package controller.category;
 

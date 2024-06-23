@@ -2,6 +2,19 @@
     Document   : updateProduct
     Created on : Jun 23, 2024, 8:12:15 PM
     Author     : Duy.Tran
+    
+    Description:
+    This JSP file allows administrators or staff to update product information. It includes fields such as product ID (displayed but not editable), product name, product image, brief description, posted date (automatically set to current date), unit, category type, account, price, and discount.
+    Users can update the product information by modifying the respective fields and submitting the form.
+    
+    Dependencies:
+    - Includes 'includes/Header.jsp' for the header section of the page.
+    - Requires 'MainController' for form submission and identifies the action as '${Action.EDIT_PRODUCT}'.
+    
+    Note:
+    - The product ID is displayed but not editable ('readonly').
+    - Product image upload is facilitated through an input of type 'file' with acceptance restricted to image types.
+    - Errors related to required fields and numeric inputs are handled by HTML5 'required' attribute and input type restrictions.
 --%>
 
 <%@page import="java.time.LocalDate"%>

@@ -5,13 +5,12 @@
  */
 package dao;
 
-import java.util.HashMap;
 import java.util.List;
-import static javafx.scene.input.KeyCode.V;
 
 /**
+ * Interface defining CRUD operations for data access.
  *
- * @author Duy.Tran
+ * @param <T> Type parameter representing the entity type.
  */
 public interface Accessible<T> {
     int insertRec(T obj);

@@ -2,6 +2,18 @@
     Document   : updateCategory
     Created on : Jun 22, 2024, 12:29:50 PM
     Author     : Duy.Tran
+    
+    Description:
+    This JSP file allows administrators or staff to update category information. It includes fields such as category ID (displayed but not editable), category name, and memo.
+    Users can update the category information by modifying the respective fields and submitting the form.
+    
+    Dependencies:
+    - Includes 'includes/Header.jsp' for the header section of the page.
+    
+    Note:
+    - The category ID is displayed but not editable ('readonly').
+    - Errors related to category name input validation are handled by HTML5 'required' attribute.
+    - The form action is handled by 'MainController' and identifies the action as '${Action.EDIT_CATEGORY}'.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

@@ -1,8 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * DeleteAccServlet.java
+ * 
+ * Servlet responsible for deleting an account record from the system.
  */
+
 package controller.account;
 
 import controller.Action;

@@ -8,7 +8,9 @@ package dto;
 import java.sql.Date;
 
 /**
- *
+ * Represents an Account entity with properties corresponding to database columns.
+ * Used as a data transfer object (DTO) between database and application layers.
+ * 
  * @author Duy.Tran
  */
 public class Account {

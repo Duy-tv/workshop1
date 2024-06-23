@@ -10,8 +10,10 @@ import java.sql.DriverManager;
 import javax.servlet.ServletContext;
 
 /**
+ * Utility class to manage database connections using JDBC. Supports
+ * initialization from hardcoded values or ServletContext parameters
  *
- * @author user
+ * @author Duy.Tran
  */
 public class MyLib {
 
@@ -22,6 +24,10 @@ public class MyLib {
     private String uid;
     private String pwd;
 
+    /**
+     * Default constructor initializes connection parameters with hardcoded
+     * values.
+     */
     public MyLib() {
         this.IP = "localhost";
         this.instanceName = "DESKTOP-1EAPPVM\\SQLEXPRESS";
@@ -31,6 +37,12 @@ public class MyLib {
         this.db = "ProductIntro";
     }
 
+    /**
+     * Constructor initializes connection parameters from ServletContext
+     * parameters.
+     *
+     * @param sc ServletContext containing database connection parameters.
+     */
     public MyLib(ServletContext sc) {
         this.IP = sc.getInitParameter("hostName");
         this.instanceName = sc.getInitParameter("instance");
@@ -39,13 +51,25 @@ public class MyLib {
         this.uid = sc.getInitParameter("userName");
         this.pwd = sc.getInitParameter("passWord");
     }
-    
+
+    /**
+     * Constructs JDBC connection URL based on stored connection parameters.
+     *
+     * @return JDBC connection URL as a formatted String.
+     */
     private String urlString() {
-        return String.format( "jdbc:sqlserver://" + this.IP + "\\" + this.instanceName + ":" + this.port
-            + ";databasename=" + this.db + ";user=" + this.uid + ";password=" + this.pwd);
-        
+        return String.format("jdbc:sqlserver://" + this.IP + "\\" + this.instanceName + ":" + this.port
+                + ";databasename=" + this.db + ";user=" + this.uid + ";password=" + this.pwd);
+
     }
 
+    /**
+     * Establishes a database connection using JDBC.
+     *
+     * @return Connection object representing the established database
+     * connection.
+     * @throws Exception if connection cannot be established.
+     */
     public Connection makeConnection() throws Exception {
         Connection cn = null;
         String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";

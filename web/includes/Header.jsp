@@ -2,6 +2,26 @@
     Document   : Header
     Created on : Jun 14, 2024, 1:58:35 PM
     Author     : Duy.Tran
+    
+    Description:
+    This JSP file represents the header section of the website. It includes navigation links,
+    login/logout buttons, and a welcome message for logged-in users.
+    
+    Dependencies:
+    - Requires the presence of 'dto.Account' and 'controller.Action' for imports.
+    - Utilizes the 'c' taglib for conditional rendering.
+    - Includes Tailwind CSS for styling.
+    
+    Navigation Links:
+    - Home: Directs to the main page.
+    - Account: Links to the user account section.
+    - Categories: Provides access to different product categories.
+    - Product: Displays available products.
+    - Contact: Leads to the contact page.
+    
+    Conditional Rendering:
+    - Shows a personalized welcome message if a user is logged in.
+    - Displays either a 'Logout' or 'Login' button based on the user's authentication status.
 --%>
 
 <%@page import="dto.Account"%>

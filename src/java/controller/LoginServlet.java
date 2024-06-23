@@ -1,8 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * LoginServlet.java
+ * 
+ * Servlet implementation for handling user login authentication.
+ * Validates user credentials against the database using AccountDAO.
+ * Stores authenticated user session and redirects accordingly.
  */
+
 package controller;
 
 import dao.AccountDAO;
@@ -16,14 +19,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author Duy.Tran
+ * Servlet implementation class LoginServlet
  */
 public class LoginServlet extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+     * Handles user login authentication and session management.
      *
      * @param request servlet request
      * @param response servlet response
@@ -34,7 +36,6 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             String url = "";
             String account = request.getParameter("txtaccount");
             String password = request.getParameter("txtpassword");
@@ -56,7 +57,6 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
