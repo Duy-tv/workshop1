@@ -4,13 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/web/product.jsp</file>
+            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/controller/MainController.java</file>
+            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/controller/category/AddCategoryServlet.java</file>
+            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/web/register.jsp</file>
             <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/dao/CategoryDAO.java</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/dto/Product.java</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/dao/AccountDAO.java</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/controller/product/ListProductServlet.java</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/controller/Navigation.java</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/web/category.jsp</file>
+            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/controller/product/DeleteProductServlet.java</file>
+            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/controller/product/AddProductServlet.java</file>
             <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/dao/ProductDAO.java</file>
+            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/web/addProduct.jsp</file>
             <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/controller/category/ListCategoryServlet.java</file>
         </group>
     </open-files>

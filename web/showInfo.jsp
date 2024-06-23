@@ -23,23 +23,23 @@
                         </div>
                     </div>
 
-                            
+
                     <div class="col-span-1 md:col-span-2">
                         <div class="max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
                             <div class="px-6 py-4">
                                 <div class="font-bold text-xl mb-2">${param.productName}</div>
                                 <p class="text-gray-700 text-base mb-4">${param.brief}</p>
                                 <div class="flex items-center mb-2">
-                                     <c:choose>
-                                                <c:when test="${param.discount != 0}">
-                                                    <span class="text-green-600 text-sm font-semibold">${param.price - (param.price * param.discount / 100)} VND</span>
-                                                    <span class="text-gray-600 text-sm line-through mr-2">${param.price} VND</span>
-                                                    <span class="text-red-600 text-sm ml-2">${param.discount}% OFF</span>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <span class="text-green-600 text-sm font-semibold">${param.price} VND</span>
-                                                </c:otherwise>
-                                            </c:choose>
+                                    <c:choose>
+                                        <c:when test="${param.discount != 0}">
+                                            <span class="text-green-600 text-sm font-semibold">${param.price - (param.price * param.discount / 100)} VND</span>
+                                            <span class="text-gray-600 text-sm line-through mr-2">${param.price} VND</span>
+                                            <span class="text-red-600 text-sm ml-2">${param.discount}% OFF</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="text-green-600 text-sm font-semibold">${param.price} VND</span>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
                                 <div class="mt-4">
                                     <p class="text-gray-700 text-sm"><span class="font-semibold">Unit:</span> ${param.unit}</p>
@@ -48,7 +48,12 @@
                                     <p class="text-gray-700 text-sm"><span class="font-semibold">Condition:</span> New</p>
                                     <p class="text-gray-700 text-sm"><span class="font-semibold">Shipping:</span> Free Shipping</p>
                                 </div>
-                                <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add to Cart</button>
+                                <form action="MainController" method="post">
+                                    <div class="flex justify-between mt-7">
+                                        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add to Cart</button>
+                                        <button class="mt-4 text-blue-500 hover:text-blue-600 hover:underline py-2 px-4" name="action" value="<%=Action.HOME%>">Back</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

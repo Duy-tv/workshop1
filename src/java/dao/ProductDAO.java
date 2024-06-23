@@ -25,7 +25,38 @@ public class ProductDAO implements Accessible<Product> {
 
     @Override
     public int insertRec(Product obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int rs = 0;
+        Connection cn = null;
+        try {
+            cn = MyLib.makeConnection();
+            if (cn != null) {
+                String sql = "insert into [dbo].[products]([productId],[productName],[productImage],[brief],[postedDate],[typeId],[account],[unit],[price],[discount]) values(?,?,?,?,?,?,?,?,?,?)";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, obj.getProductId());
+                pst.setString(2, obj.getProductName());
+                pst.setString(3, obj.getProductImage());
+                pst.setString(4, obj.getBrief());
+                pst.setDate(5, obj.getPostedDate());
+                pst.setInt(6, obj.getType().getTypeId());
+                pst.setString(7, obj.getAccount().getAccount());
+                pst.setString(8, obj.getUnit());
+                pst.setInt(9, obj.getPrice());
+                pst.setInt(10, obj.getDiscount());
+                rs = pst.executeUpdate();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return rs;
     }
 
     @Override
@@ -35,7 +66,29 @@ public class ProductDAO implements Accessible<Product> {
 
     @Override
     public int deleteRec(Product obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       int rs = 0;
+        Connection cn = null;
+        try {
+            cn = MyLib.makeConnection();
+            if (cn != null) {
+                String sql = "delete from [dbo].[products] where [productId] = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, obj.getProductId());
+                rs = pst.executeUpdate();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return rs;
     }
 
     @Override

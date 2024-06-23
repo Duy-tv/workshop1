@@ -30,6 +30,10 @@ public interface Action {
     public final String ADD_NEW_CATEGORY = "addNewCat";
     public final String EDIT_CATEGORY = "editCategory";
     public final String SHOW = "show";
+    public final String ADD_PRODUCT = "newProduct";
+    public final String DELETE_PRODUCT = "deletePro";
+    public final String UPDATE_PRODUCT = "updatePro";
+    public final String ADD_NEW_PRODUCT = "addNewProduct";
     
     
 }

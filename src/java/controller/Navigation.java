@@ -22,4 +22,5 @@ public interface Navigation {
     public final String ADD_CATEGORY_URL = "addCategory.jsp";
     public final String UPDATE_CATEGORY_URL = "updateCategory.jsp";
     public final String SHOW_INFO_URL = "showInfo.jsp";
+    public final String ADD_PRODUCT_URL = "addProduct.jsp";
 }

@@ -1,0 +1,80 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 23, 2024, 11:09:56 AM
+    Author     : Duy.Tran
+*/
+
+/* productTable.css */
+
+
+.table-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.table-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bolder;
+    font-size: large;
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.product-table th,
+.product-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.product-table th {
+    background-color: #f2f2f2;
+    color: black;
+}
+
+.product-table td img {
+    max-width: 100px;
+    height: auto;
+}
+
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.action-buttons button {
+    padding: 5px 10px;
+    margin: 2px;
+    border: none;
+    cursor: pointer;
+}
+
+.button-update {
+    background-color: #4CAF50; 
+    color: white;
+}
+
+.button-delete {
+    background-color: #f44336; 
+    color: white;
+}
+
+.button-update:hover,
+.button-delete:hover {
+    opacity: 0.8;
+}

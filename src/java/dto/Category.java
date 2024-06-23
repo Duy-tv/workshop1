@@ -52,5 +52,8 @@ public class Category {
         this.memo = memo;
     }
     
-    
+     @Override
+   public String toString() {
+       return String.format("%s", String.valueOf(typeId));
+   }
 }

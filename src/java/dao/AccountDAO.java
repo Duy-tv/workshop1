@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utils.MyLib;
 
 /**
@@ -156,6 +158,7 @@ public class AccountDAO implements Accessible<Account> {
         Account acc = null;
         Connection cn = null;
         try {
+            cn = MyLib.makeConnection();
             if (cn != null) {
                 String sql = "SELECT [account], [pass], [lastName], [firstName],\n"
                         + "[birthday], [gender], [phone], [isUse], [roleInSystem]\n"
@@ -176,14 +179,14 @@ public class AccountDAO implements Accessible<Account> {
                     acc = new Account(id, pass, lastName, firstName, birthday, gender, phone, isUse, roleInSystem);
                 }
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
                 if (cn != null) {
                     cn.close();
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -306,4 +309,4 @@ public class AccountDAO implements Accessible<Account> {
         }
         return acc;
     }
-            }
+}

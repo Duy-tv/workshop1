@@ -5,6 +5,7 @@
  */
 package controller.category;
 
+import controller.Action;
 import controller.Navigation;
 import dao.CategoryDAO;
 import dto.Category;
@@ -15,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,11 +38,21 @@ public class ListCategoryServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            String action = request.getParameter("action");
+            String typeId = request.getParameter("typeId");
             CategoryDAO categoryDAO = new CategoryDAO();
             List<Category> categoryList = categoryDAO.listAll();
             request.setAttribute("categoryList", categoryList);
-            
-            request.getRequestDispatcher(Navigation.CATEGORY_URL).forward(request, response);
+            String url = "";
+            if (action.equals(Action.ADD_PRODUCT)) {
+                HttpSession session = request.getSession();
+                session.setAttribute("selectedTypeId", typeId);
+                url = Navigation.ADD_PRODUCT_URL;
+            } else {
+                url = Navigation.CATEGORY_URL;
+            }
+
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

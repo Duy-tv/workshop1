@@ -6,23 +6,25 @@
 package controller.product;
 
 import controller.Action;
-import controller.Navigation;
+import dao.AccountDAO;
+import dao.CategoryDAO;
 import dao.ProductDAO;
+import dto.Account;
+import dto.Category;
 import dto.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Duy.Tran
  */
-public class ListProductServlet extends HttpServlet {
+public class DeleteProductServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,22 +40,30 @@ public class ListProductServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String action = request.getParameter("action");
+            String productId = request.getParameter("productId");
+            String productName = request.getParameter("productName");
+            String productImage = request.getParameter("productImage");
+            String brief = request.getParameter("brief");
+            Date postedDate = Date.valueOf(request.getParameter("postedDate"));
+            String unit = request.getParameter("unit");
+            String typeId = request.getParameter("type");
+            CategoryDAO cd = new CategoryDAO();
+            Category c = cd.getObjectById(String.valueOf(typeId));
+            String acc = request.getParameter("account");
+            AccountDAO ad = new AccountDAO();
+            Account account = ad.getObjectById(acc);
+            int price = Integer.parseInt(request.getParameter("price"));
+            int discount = Integer.parseInt(request.getParameter("discount"));
             String url = "";
             ProductDAO productDAO = new ProductDAO();
-            List<Product> productList = productDAO.listAll();
-            request.setAttribute("productList", productList);
-            HttpSession session = request.getSession();
-            if (action != null && action.equals(Action.PRODUCT)) {
-                if (session.getAttribute("loginedAcc") == null) {
-                    url = Navigation.LOGIN_URL;
-                } else {
-                    url = Navigation.PRODUCT_URL;
-                }
-            } else {
-                url = Navigation.HOME_URL;
-            }
+            Product pro = new Product(productId, productName, productImage, brief, postedDate, c, account, unit, price, discount);
 
+            int rs = productDAO.deleteRec(pro);
+            if(rs >= 1) {
+                 url = "MainController?action=" + Action.PRODUCT;
+            } else {
+                 url = "MainController?action=" + Action.PRODUCT;
+            }
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

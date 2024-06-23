@@ -110,5 +110,8 @@ public class Account {
         this.roleInSystem = roleInSystem;
     }
 
-   
+    @Override
+   public String toString() {
+       return String.format("%s", account);
+   }
 }

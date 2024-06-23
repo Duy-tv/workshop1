@@ -37,7 +37,7 @@ public class MainController extends HttpServlet {
             String action = request.getParameter("action");
             String url = "";
             if (action == null) {
-                url = Action.HOME;
+                action = Action.HOME;
             }
             switch (action) {
                 case Action.HOME:
@@ -61,7 +61,13 @@ public class MainController extends HttpServlet {
                 case Action.UPDATE:
                     url = Navigation.UPDATE_ACCOUNT_URL;
                     break;
+                case Action.ADD_PRODUCT:
+                    url = "ListCategoryServlet";
+                    break;
 
+                case Action.PRODUCT:
+                    url = "ListProductServlet";
+                    break;
                 case Action.ACCOUNT:
                     url = "ListAccountsServlet";
                     break;
@@ -92,11 +98,14 @@ public class MainController extends HttpServlet {
                 case Action.DELETE_CATEGORY:
                     url = "DeleteCategoryServlet";
                     break;
-                case Action.PRODUCT:
-                    url = "ListProductServlet";
-                    break;
                 case Action.SHOW:
                     url = "ShowProductServlet";
+                    break;
+                case Action.DELETE_PRODUCT:
+                    url = "DeleteProductServlet";
+                    break;
+                case Action.ADD_NEW_PRODUCT:
+                    url = "AddProductServlet";
                     break;
                 default:
                     break;

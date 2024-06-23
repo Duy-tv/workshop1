@@ -13,7 +13,6 @@
     <head>
         <meta charset="UTF-8">
         <title>Product</title>
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
         <jsp:include page="includes/Header.jsp"/>
         <link href="styles/table.css" rel="stylesheet" type="text/css"/>
     </head>
