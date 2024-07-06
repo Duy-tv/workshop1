@@ -28,6 +28,7 @@
         <link href="styles/productTable.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+        <c:set var="userRole" value="${loginedAcc.roleInSystem}" />
         <div class="table-container">
             <div class="table-wrapper">
                 <h1 class="table-title">List of products in the system</h1>
@@ -78,11 +79,13 @@
                         </c:forEach>
                     </tbody>
                 </table>
-                <form action="MainController" method="post">
+                <c:if test="${userRole == 1}">
+                <form class="action-buttons" action="MainController" method="post">
                     <div class="flex w-full justify-center mt-7">
-                        <button class="deactivate" type="submit" name="action" value="<%= Action.ADD_PRODUCT%>">Add new</button>
+                        <button class=" button-update rounded-lg" type="submit" name="action" value="<%= Action.ADD_PRODUCT%>">Add new</button>
                     </div>
                 </form>
+                </c:if>
             </div>
         </div>
     </body>

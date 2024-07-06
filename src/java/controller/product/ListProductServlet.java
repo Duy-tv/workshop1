@@ -43,13 +43,8 @@ public class ListProductServlet extends HttpServlet {
             ProductDAO productDAO = new ProductDAO();
             List<Product> productList = productDAO.listAll();
             request.setAttribute("productList", productList);
-            HttpSession session = request.getSession();
             if (action != null && action.equals(Action.PRODUCT)) {
-                if (session.getAttribute("loginedAcc") == null) {
-                    url = Navigation.LOGIN_URL;
-                } else {
                     url = Navigation.PRODUCT_URL;
-                }
             } else {
                 url = Navigation.HOME_URL;
             }

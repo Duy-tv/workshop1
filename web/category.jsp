@@ -34,6 +34,7 @@
 </head>
 <body>
     <%@include file="includes/Header.jsp" %>
+     <c:set var="userRole" value="${loginedAcc.roleInSystem}" />
     <div class="table-container">
         <div class="table-wrapper">
             <h1 class="text-2xl font-bold mb-4">List of categories in system</h1>
@@ -65,11 +66,13 @@
                     </c:forEach>
                 </tbody>
             </table>
+            <c:if test="${userRole == 1}">
             <form action="MainController" method="post">
                 <div class="flex w-full justify-center mt-7">
                     <button class="deactivate" type="submit" name="action" value="<%= Action.ADD_CATEGORY%>">Add new</button>
                 </div>
             </form>
+            </c:if>>
         </div>
     </div>
 </body>
