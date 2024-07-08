@@ -3,17 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/web/product.jsp</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/filters/LoginFilter.java</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/controller/MainController.java</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/controller/LoginServlet.java</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/web/index.jsp</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/controller/product/ListProductServlet.java</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/web/login.jsp</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/web/category.jsp</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/web/account.jsp</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/controller/account/ListAccountsServlet.java</file>
-            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/controller/category/ListCategoryServlet.java</file>
+            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/dao/AccountDAO.java</file>
+            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/src/java/utils/MyLib.java</file>
+            <file>file:/D:/SE_SU_24/PRJ301/Servlet/product/web/WEB-INF/web.xml</file>
         </group>
     </open-files>
 </project-private>

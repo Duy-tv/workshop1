@@ -34,7 +34,7 @@ public class MyLib {
         this.port = "1433";
         this.uid = "sa";
         this.pwd = "12345";
-        this.db = "ProductIntro";
+        this.db = "ProductIntro1";
     }
 
     /**
@@ -44,12 +44,12 @@ public class MyLib {
      * @param sc ServletContext containing database connection parameters.
      */
     public MyLib(ServletContext sc) {
-        this.IP = sc.getInitParameter("hostName");
-        this.instanceName = sc.getInitParameter("instance");
+        this.IP = sc.getInitParameter("IP");
+        this.instanceName = sc.getInitParameter("instanceName");
         this.port = sc.getInitParameter("port");
-        this.db = sc.getInitParameter("dbName");
-        this.uid = sc.getInitParameter("userName");
-        this.pwd = sc.getInitParameter("passWord");
+        this.db = sc.getInitParameter("db");
+        this.uid = sc.getInitParameter("uid");
+        this.pwd = sc.getInitParameter("pwd");
     }
 
     /**
