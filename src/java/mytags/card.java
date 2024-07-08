@@ -41,19 +41,11 @@ public class card extends SimpleTagSupport {
             out.print("<div class='flex justify-between items-center'>");
             out.print("<div>");
             if (discount != 0) {
-                out.print("<span class='text-gray-600 text-sm line-through mr-2'>");
-                out.print(price);
-                out.print(" VND</span>");
-                out.print("<span class='text-green-600 text-sm font-semibold'>");
-                out.print(discountedPrice);
-                out.print(" VND</span>");
-                out.print("<span class='text-red-600 text-sm ml-2'>");
-                out.print(discount);
-                out.print("% OFF</span>");
+                out.print("<span class='text-gray-600 text-sm line-through mr-2'>" + price + " VND</span>");
+                out.print("<span class='text-green-600 text-sm font-semibold'>" + discountedPrice + " VND</span>");
+                out.print("<span class='text-red-600 text-sm ml-2'>" + discount + "% OFF</span>");
             } else {
-                out.print("<span class='text-green-600 text-sm font-semibold'>");
-                out.print(price);
-                out.print(" VND</span>");
+                out.print("<span class='text-green-600 text-sm font-semibold'>" + price + " VND</span>");
             }
             out.print("</div>");
             out.print("</div>");

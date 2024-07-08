@@ -72,7 +72,7 @@
                     <button class="deactivate" type="submit" name="action" value="<%= Action.ADD_CATEGORY%>">Add new</button>
                 </div>
             </form>
-            </c:if>>
+            </c:if>
         </div>
     </div>
 </body>
