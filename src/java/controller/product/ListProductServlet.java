@@ -44,7 +44,7 @@ public class ListProductServlet extends HttpServlet {
             List<Product> productList = productDAO.listAll();
             request.setAttribute("productList", productList);
             if (action != null && action.equals(Action.PRODUCT)) {
-                    url = Navigation.PRODUCT_URL;
+                url = Navigation.PRODUCT_URL;
             } else {
                 url = Navigation.HOME_URL;
             }
